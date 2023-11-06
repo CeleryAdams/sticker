@@ -21,7 +21,10 @@ export default function MouseSticker()
         <div style={{ 
             position: 'fixed', 
             left: `${position.x}px`, 
-            top: `${position.y}px`
+            top: `${position.y}px`,
+
+            //position sticker to one side of cursor - tbd based on UI
+            transform: 'translate(30%, -50%)'
         }}>
             <img src='./screen-sticker.png' />
         </div>

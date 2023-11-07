@@ -1,18 +1,32 @@
-import { Decal, OrbitControls, useTexture} from '@react-three/drei'
+import { OrbitControls, useTexture} from '@react-three/drei'
 import {useFrame} from '@react-three/fiber'
 import { useRef, useState } from 'react'
-import Sticker from './Decal'
+import * as THREE from 'three'
+import Sticker from './Sticker'
 
 export default function Duck()
 {
     const cubeRef = useRef()
     const helperRef = useRef()
 
-    const decalRef = useRef()
     const decalTexture = useTexture('./screen-sticker.png')
 
+    //set one sticker
     const [ useSticker, setSticker ] = useState(false)
 
+    //array of stickers
+    const [stickers, setStickers] = useState([])
+
+    const addSticker = () =>
+    {
+        setStickers([...stickers, 
+        {
+            id: stickers.length,
+            renderOrder: stickers.length,
+            rotation: [helperRef.current.rotation.x, helperRef.current.rotation.y, helperRef.current.rotation.z],
+            position: [helperRef.current.position.x, helperRef.current.position.y, helperRef.current.position.z]
+        }])   
+    }
 
     // //render helper only if there is an intersection
     // const [ helper, setHelper ] = useState(false)
@@ -65,40 +79,12 @@ export default function Duck()
         </mesh>
         
 
-        <mesh ref={helperRef} visible={true} onClick={() => setSticker(true)}>
-            <boxGeometry args={[0.5, 0.5, 0.5]} />
-            <meshBasicMaterial color='red' />
+        <mesh ref={helperRef} visible={true} onClick={addSticker}>
+            {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}
+            <planeGeometry args={[0.5, 0.5]} />
+            <meshBasicMaterial map={decalTexture} transparent side={THREE.DoubleSide}/>
         </mesh>
 
-        <Decal 
-            mesh={cubeRef}
-            debug
-            scale={0.5}
-            polygonOffset
-            polygonOffsetFactor={-4}
-            // rotation={[1.6,0,0]}
-            position={[0, 1, 0]}
-            renderOrder={1}
-            >
-            <meshBasicMaterial map={decalTexture} transparent depthWrite={false}/>
-            </Decal>
-
-        {useSticker &&
-            <Decal 
-                mesh={cubeRef}
-                ref={decalRef}
-                debug
-                scale={0.5}
-                polygonOffset
-                polygonOffsetFactor={-4}
-                rotation={[helperRef.current.rotation.x, helperRef.current.rotation.y, helperRef.current.rotation.z]}
-                position={[helperRef.current.position.x, helperRef.current.position.y, helperRef.current.position.z]}
-                renderOrder={2}
-                >
-                <meshBasicMaterial map={decalTexture} transparent depthWrite={false}/>
-            </Decal>
-        }
-
-        {/* {useSticker && <Sticker cubeRef={cubeRef} useSticker={useSticker}/>} */}
+        <Sticker stickers={stickers} cubeRef={cubeRef}/>
     </>
 }

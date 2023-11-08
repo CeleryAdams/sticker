@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import Sticker from './Sticker'
 import useSticker from './stores/useSticker'
 
+
 export default function Duck()
 {
     const duckRef = useRef()

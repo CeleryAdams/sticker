@@ -45,20 +45,32 @@ export default function Duck()
 
     }
 
+    const undo = () => {
+        setStickers((stickers) => {
+            const stickersCopy = [...stickers]
+            stickersCopy.pop()
+            return stickersCopy
+        })
+        start()
+    }
+
+    useEffect(() => console.log(stickers), [stickers])
 
     useEffect(() =>
     {
         const unsubscribeReset = useSticker.subscribe(
             (state) => state.phase,
-            (value) =>
-            {
-                if(value === 'cleared')
-                    reset()
-            }
+            (value) => value === 'cleared' && reset()
+        )
+
+        const unsubscribeUndo = useSticker.subscribe(
+            (state) => state.phase,
+            (value) => value === 'undo' && undo()
         )
 
         return () => 
         {
+            unsubscribeUndo()
             unsubscribeReset()
         }
     }, [])
@@ -76,7 +88,6 @@ export default function Duck()
         const intersects =[]
         const mesh = duckRef.current
         raycaster.intersectObject(mesh, false, intersects)
-        console.log[intersects]
 
         if (intersects.length <= 0)
         {
@@ -95,7 +106,6 @@ export default function Duck()
                 n.add( intersects[ 0 ].point )
 
                 helperRef.current.position.copy((intersects[0].point))
-                console.log(helperRef.current.rotation)
                 helperRef.current.lookAt(n)    
             }
 
@@ -118,7 +128,7 @@ export default function Duck()
         <mesh 
             ref={helperRef} 
             visible={true}
-            // scale={scale} 
+            scale={scale} 
             onClick={() => {
                 addSticker()
                 start()
@@ -126,7 +136,7 @@ export default function Duck()
         >
                 {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}
                 <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={decalTexture} transparent side={THREE.DoubleSide}/>
+                <meshBasicMaterial map={decalTexture} transparent side={THREE.DoubleSide} opacity={0.6} depthWrite={false}/>
         </mesh>
 
         <Sticker stickers={stickers} duckRef={duckRef}/>

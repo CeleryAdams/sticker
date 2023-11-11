@@ -7,7 +7,7 @@ export default function Sticker({duckRef, stickers})
     const decalRef = useRef()
     const decalTexture = useTexture('./screen-sticker.png')
 
-    useEffect(() => console.log(stickers), [])
+    // useEffect(() => console.log(stickers), [stickers])
 
 
     return <>

@@ -19,14 +19,30 @@ html, body, #root
     pointer-events: none;
 }
 
-.reset
+.button-container
+{
+  position: absolute;
+	left: 30px;
+	top: 10px;
+	transform: translateX(-50%);
+	display: flex;
+  flex-direction: column;
+	align-items:flex-start;
+	justify-content:left;
+	padding:0 21px 6px 16px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.reset, .undo
 {
     font-family: 'Poppins', sans-serif;
-    width: 70px;
-    height: 70px;
+    font-size: 13px;
+    width: 50px;
+    height: 50px;
     margin-top: 16px;
     margin-left: 16px;
-    background-color: rgb(187, 105, 169);
+    background-color: rgb(105, 187, 162);
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -37,15 +53,19 @@ html, body, #root
     transition: background-color 0.1s, transform 0.3s;
 }
 
-.reset:hover
-{
-    background-color:  rgb(52, 83, 219);
-    transform: scale(1.05);
-}
 
-.reset:active
-{
-    transform: scale(1);
+
+@media(hover: hover) {
+  .reset:hover, .reset:active, .undo:hover, .undo:active
+  {
+      background-color:  rgb(52, 83, 219);
+      transform: scale(1.05);
+  }
+  
+  .reset:active, .undo:active
+  {
+      transform: transform 0s;
+  }
 }
 
 .slider {
@@ -61,8 +81,8 @@ html, body, #root
 	align-items:center;
 	justify-content:space-between;
 	padding:0 21px 6px 16px;
-    cursor: pointer;
-    pointer-events: auto;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 @media screen and (min-width: 640px) {
@@ -95,8 +115,8 @@ html, body, #root
 
 .slider-range::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	width: 20px;
-	height: 20px;
+	width: calc(40px * var(--thumb-scale, 1));
+	height: calc(40px * var(--thumb-scale, 1));
 	background-color: white;
 	border-radius: 50%;
 	transform: translateY(-50%);

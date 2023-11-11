@@ -9,8 +9,9 @@ export default create(subscribeWithSelector((set) =>
         phase: 'cleared',
         scale: 1,
 
-        start: () => set((state) => state.phase === 'cleared' ? { phase: 'start'} : {}),
+        start: () => set((state) => state.phase !== 'start' ? { phase: 'start'} : {}),
         clear: () => set((state) => state.phase === 'start' ? { phase: 'cleared'} : {}),
+        undo: () => set((state) => state.phase ==='start'? { phase: 'undo'} : {}),
         setScale: (value) => {
             set( {scale: value} )
         }

@@ -8,16 +8,19 @@ export default function Interface()
     const undo = useSticker((state) => state.undo)
     const scale = useSticker((state) => state.scale)
     const setScale = useSticker((state) => state.setScale)
+    const rotate45 = useSticker(state=> state.rotate45)
 
     const sliderRange = [0.3, 2.0]
-    const remap = [0.4, 1.4]
+    const remap = [0.4, 1.2]
+
+    let thumbScale = remap[0] + ((remap[1] - remap[0]) / (sliderRange[1] - sliderRange[0]) * (scale - sliderRange[0]))
+    document.documentElement.style.setProperty('--thumb-scale', thumbScale)
     
 
     const handleScaleChange = (event) => {
         setScale(parseFloat(event.target.value))
-        let thumbScale = remap[0] + ((remap[1] - remap[0]) / (sliderRange[1] - sliderRange[0]) * (event.target.value - sliderRange[0]))
+        thumbScale = remap[0] + ((remap[1] - remap[0]) / (sliderRange[1] - sliderRange[0]) * (event.target.value - sliderRange[0]))
         document.documentElement.style.setProperty('--thumb-scale', thumbScale)
-        console.log(event.target.value)
     }
 
     return <div className='interface'>
@@ -26,6 +29,7 @@ export default function Interface()
             <div className='reset' onClick={ clear }>Clear</div>
         </div>
         <div className='slider'>
+            <div className='minus'>-</div>
             <input
                 className='slider-range'
                 type='range'
@@ -35,6 +39,8 @@ export default function Interface()
                 max={ sliderRange[1] }
                 onChange={handleScaleChange}
             />
+            <div className='plus'>+</div>
+            <div className='rotate' onClick={rotate45}>↻</div>
         </div>
     </div>
 }

@@ -16,9 +16,18 @@ export default function Duck()
     const start = useSticker((state) => state.start)
     const scale = useSticker((state) => state.scale)
     const setScale = useSticker((state) => state.setScale)
+    const rotationZ = useSticker(state => state.rotationZ)
+    const rotate45 = useSticker(state=> state.rotate45)
+
 
     //load texture
     const decalTexture = useTexture('./screen-sticker.png')
+
+    const textureCenter=new THREE.Vector2(0.5, 0.5)
+    useEffect(()=> {
+        decalTexture.center = textureCenter
+        decalTexture.rotation=rotationZ
+    }, [rotationZ])
 
 
     //array of stickers
@@ -26,13 +35,17 @@ export default function Duck()
 
     const addSticker = () =>
     {
+        const newStickerTexture = decalTexture.clone()
+        newStickerTexture.needsUpdate = true
         setStickers([...stickers, 
         {
             id: stickers.length,
             renderOrder: stickers.length,
             rotation: [helperRef.current.rotation.x, helperRef.current.rotation.y, helperRef.current.rotation.z],
             position: [helperRef.current.position.x, helperRef.current.position.y, helperRef.current.position.z],
-            scale: scale * 0.5
+            scale: scale * 0.5,
+            rotationZ: rotationZ,
+            texture: newStickerTexture
         }])   
     }
 
@@ -42,7 +55,6 @@ export default function Duck()
         setStickers([])
         setScale(1)
         helperRef.current.position.set(0,0,0)
-
     }
 
     const undo = () => {
@@ -54,7 +66,10 @@ export default function Duck()
         start()
     }
 
-    useEffect(() => console.log(stickers), [stickers])
+    useEffect(() => {
+        console.log(stickers)
+    }
+    , [stickers])
 
     useEffect(() =>
     {
@@ -126,13 +141,14 @@ export default function Duck()
         
 
         <mesh 
-            ref={helperRef} 
+            ref={helperRef}
             visible={true}
             scale={scale} 
             onClick={() => {
                 addSticker()
                 start()
             }}
+            onContextMenu={rotate45}
         >
                 {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}
                 <planeGeometry args={[0.5, 0.5]} />

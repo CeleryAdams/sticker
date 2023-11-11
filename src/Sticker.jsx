@@ -1,13 +1,15 @@
 import { Decal, useTexture } from '@react-three/drei'
 import { useEffect, useRef } from 'react'
+import * as THREE from 'three'
 
 
 export default function Sticker({duckRef, stickers})
 {
     const decalRef = useRef()
-    const decalTexture = useTexture('./screen-sticker.png')
-
-    // useEffect(() => console.log(stickers), [stickers])
+    const stickerTexture = useTexture('./screen-sticker2.png')
+    stickerTexture.needsUpdate = true
+    const textureCenter=new THREE.Vector2(0.5, 0.5)
+    // useEffect(() => console.log(stickers.rotationZ), [stickers])
 
 
     return <>
@@ -24,7 +26,7 @@ export default function Sticker({duckRef, stickers})
                 position={sticker.position}
                 renderOrder={sticker.renderOrder}
             >
-                <meshBasicMaterial map={decalTexture} transparent depthWrite={false}/>
+                <meshBasicMaterial map={sticker.texture} transparent depthWrite={false}/>
             </Decal>
         ))}
     </>

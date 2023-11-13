@@ -6,10 +6,6 @@ import * as THREE from 'three'
 export default function Sticker({duckRef, stickers})
 {
     const decalRef = useRef()
-    const stickerTexture = useTexture('./screen-sticker2.png')
-    stickerTexture.needsUpdate = true
-    const textureCenter=new THREE.Vector2(0.5, 0.5)
-    // useEffect(() => console.log(stickers.rotationZ), [stickers])
 
 
     return <>

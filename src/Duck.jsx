@@ -16,18 +16,19 @@ export default function Duck()
     const start = useSticker((state) => state.start)
     const scale = useSticker((state) => state.scale)
     const setScale = useSticker((state) => state.setScale)
-    const rotationZ = useSticker(state => state.rotationZ)
+    const stickerRotation = useSticker(state => state.stickerRotation)
     const rotate45 = useSticker(state=> state.rotate45)
+    const selectedSticker = useSticker(state=> state.selectedSticker)
 
 
     //load texture
-    const decalTexture = useTexture('./screen-sticker.png')
+    const selectedStickerTexture = useTexture(`./${selectedSticker}.png`)
 
     const textureCenter=new THREE.Vector2(0.5, 0.5)
     useEffect(()=> {
-        decalTexture.center = textureCenter
-        decalTexture.rotation=rotationZ
-    }, [rotationZ])
+        selectedStickerTexture.center = textureCenter
+        selectedStickerTexture.rotation=stickerRotation
+    }, [stickerRotation])
 
 
     //array of stickers
@@ -35,8 +36,8 @@ export default function Duck()
 
     const addSticker = () =>
     {
-        const newStickerTexture = decalTexture.clone()
-        newStickerTexture.needsUpdate = true
+        const stickerTexture = selectedStickerTexture.clone()
+        stickerTexture.needsUpdate = true
         setStickers([...stickers, 
         {
             id: stickers.length,
@@ -44,8 +45,8 @@ export default function Duck()
             rotation: [helperRef.current.rotation.x, helperRef.current.rotation.y, helperRef.current.rotation.z],
             position: [helperRef.current.position.x, helperRef.current.position.y, helperRef.current.position.z],
             scale: scale * 0.5,
-            rotationZ: rotationZ,
-            texture: newStickerTexture
+            stickerRotation: stickerRotation,
+            texture: stickerTexture
         }])   
     }
 
@@ -54,7 +55,6 @@ export default function Duck()
     const reset = () => {
         setStickers([])
         setScale(1)
-        helperRef.current.position.set(0,0,0)
     }
 
     const undo = () => {
@@ -66,10 +66,10 @@ export default function Duck()
         start()
     }
 
-    useEffect(() => {
-        console.log(stickers)
-    }
-    , [stickers])
+    // useEffect(() => {
+    //     console.log(stickers)
+    // }
+    // , [stickers])
 
     useEffect(() =>
     {
@@ -149,10 +149,11 @@ export default function Duck()
                 start()
             }}
             onContextMenu={rotate45}
+            renderOrder = {stickers.length + 1}
         >
                 {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}
                 <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={decalTexture} transparent side={THREE.DoubleSide} opacity={0.6} depthWrite={false}/>
+                <meshBasicMaterial map={selectedStickerTexture} transparent side={THREE.DoubleSide} opacity={0.6} depthWrite={false}/>
         </mesh>
 
         <Sticker stickers={stickers} duckRef={duckRef}/>

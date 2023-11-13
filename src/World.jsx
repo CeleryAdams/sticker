@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import Duck from './Duck.jsx'
-import Interface from './Interface.jsx'
+import Interface from './interface/Interface.jsx'
 import './style.css'
 
 

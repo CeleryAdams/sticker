@@ -10,6 +10,8 @@ export default function Interface()
     const rotate45 = useSticker(state=> state.rotate45)
     const rotate45Cc = useSticker(state=> state.rotate45Cc)
     const stickerRotation = useSticker(state=> state.stickerRotation)
+    const menuOpen = useSticker((state) => state.menuOpen)
+    const setMenuOpen = useSticker((state) => state.setMenuOpen)
 
 
     //keyboard controls for rotation
@@ -17,6 +19,7 @@ export default function Interface()
     {
         switch (event.key)
         {
+            case ' ':
             case 'ArrowRight':
                 rotate45()
                 break
@@ -36,15 +39,25 @@ export default function Interface()
       }, [stickerRotation]);
 
 
+
+    //open menu
+    const openMenu = (event) => {
+        setMenuOpen(!menuOpen)
+        event.stopPropagation()
+    }
+
+
     return <div className='interface'>
         <div className='button-container'>
             <div className='undo' onClick={ undo }>Undo</div>
             <div className='reset' onClick={ clear }>Clear</div>
+            <div className='info'>Info</div>
         </div>
-        <div className='menu'>
-            <StickerMenu />
+        <div className='bottom-menu'>
+            <div className='open-menu' onClick={openMenu}>☺</div>
             <Slider />
             <div className='rotate' onClick={rotate45}>↻</div>
         </div>
+        <StickerMenu />
     </div>
 }

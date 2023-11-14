@@ -19,6 +19,8 @@ export default function Duck()
     const stickerRotation = useSticker(state => state.stickerRotation)
     const rotate45 = useSticker(state=> state.rotate45)
     const selectedSticker = useSticker(state=> state.selectedSticker)
+    const menuOpen = useSticker((state) => state.menuOpen)
+    const setMenuOpen = useSticker((state) => state.setMenuOpen)
 
 
     //load texture
@@ -148,7 +150,7 @@ export default function Duck()
                 addSticker()
                 start()
             }}
-            onContextMenu={rotate45}
+            onContextMenu={() =>setMenuOpen(true)}
             renderOrder = {stickers.length + 1}
         >
                 {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}

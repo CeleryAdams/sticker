@@ -30,7 +30,7 @@ export default function StickerMenu()
 
     //close menu on outside click
     useEffect(() => {
-        console.log(menuRef)
+        // console.log(menuRef)
         const handleOutsideClick = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target))
                 setMenuOpen(false)

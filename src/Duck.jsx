@@ -1,15 +1,21 @@
-import { OrbitControls, useTexture} from '@react-three/drei'
+import { OrbitControls, useGLTF, useTexture} from '@react-three/drei'
 import {useFrame} from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import Sticker from './Sticker'
 import useSticker from './stores/useSticker'
+import { DuckModel } from './DuckModel'
 
 
 export default function Duck()
 {
     const duckRef = useRef()
     const helperRef = useRef()
+
+
+    //load duck model
+    const { nodes, materials } = useGLTF("/duck.glb")
+    console.log(nodes, materials)
 
 
     //global state
@@ -132,15 +138,23 @@ export default function Duck()
 
     return <>
         <OrbitControls makeDefault />
-        <mesh 
+        {/* <mesh 
             ref={ duckRef }
             onPointerEnter={() => document.body.style.cursor = 'grab'}
             onPointerLeave={() => document.body.style.cursor = 'default'}
         >
             <sphereGeometry />
             <meshNormalMaterial depthWrite={false} wireframe/>
+        </mesh> */}
+
+        <mesh ref = { duckRef } geometry={nodes.duck.geometry}>
+            <meshNormalMaterial depthWrite={false} wireframe/>
         </mesh>
-        
+        <mesh geometry={nodes.FEET.geometry} position={nodes.FEET.position} rotation={nodes.FEET.rotation}>
+            <meshNormalMaterial wireframe/>
+        </mesh>
+
+
 
         <mesh 
             ref={helperRef}

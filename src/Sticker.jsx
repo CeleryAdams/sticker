@@ -16,13 +16,19 @@ export default function Sticker({duckRef, stickers})
                 ref={decalRef}
                 // debug
                 scale={sticker.scale}
-                polygonOffset
-                polygonOffsetFactor={-4}
                 rotation={sticker.rotation}
                 position={sticker.position}
                 renderOrder={sticker.renderOrder}
             >
-                <meshBasicMaterial map={sticker.texture} transparent depthWrite={false}/>
+                <meshStandardMaterial 
+                    map={sticker.texture} 
+                        transparent 
+                        depthWrite={false}
+                        depthTest
+                        polygonOffset
+                        polygonOffsetFactor={-4}
+                        roughness={0.2}
+                        />
             </Decal>
         ))}
     </>

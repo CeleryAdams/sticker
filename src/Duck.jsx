@@ -1,4 +1,4 @@
-import { OrbitControls, useGLTF, useTexture} from '@react-three/drei'
+import { Center, OrbitControls, useGLTF, useTexture} from '@react-three/drei'
 import {useFrame} from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
@@ -142,56 +142,56 @@ export default function Duck()
     }
 
     return <>
-        <OrbitControls makeDefault />
+        <OrbitControls makeDefault target={[0, 0.4, 0]}/>
 
-        <mesh ref = { duckRef } 
-            geometry={nodes.duck.geometry} 
-            receiveShadow
-        >
-            <meshStandardMaterial 
-                map={duckTexture} 
-                roughness={0.3}
-                roughnessMap={duckGlossyTexture}
-                envMapIntensity={0.5}
-            />
-        </mesh>
-
-        <mesh 
-            geometry={nodes.FEET.geometry} 
-            position={nodes.FEET.position} 
-            rotation={nodes.FEET.rotation}
-        >
-            <meshStandardMaterial color={'#E78400'}/>
-        </mesh>
-
-
-        <mesh 
-            ref={helperRef}
-            visible={true}
-            castShadow
-            scale={scale} 
-            onClick={() => {
-                addSticker()
-                start()
-            }}
-            onContextMenu={() =>setMenuOpen(true)}
-            renderOrder = {stickers.length + 1}
-        >
-                {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}
-                <planeGeometry args={[stickerScale, stickerScale]} />
-                <meshBasicMaterial 
-                    map={selectedStickerTexture} 
-                    transparent 
-                    side={THREE.DoubleSide} 
-                    opacity={0.6}                         
-                    depthWrite={false}
-                    depthTestd
-                    polygonOffset
-                    polygonOffsetFactor={-200}
+            <mesh ref = { duckRef } 
+                geometry={nodes.duck.geometry} 
+                receiveShadow
+            >
+                <meshStandardMaterial 
+                    map={duckTexture} 
                     roughness={0.3}
-                    />
-        </mesh>
+                    roughnessMap={duckGlossyTexture}
+                    envMapIntensity={0.5}
+                />
+            </mesh>
 
-        <Sticker stickers={stickers} duckRef={duckRef}/>
+            <mesh 
+                geometry={nodes.FEET.geometry} 
+                position={nodes.FEET.position} 
+                rotation={nodes.FEET.rotation}
+            >
+                <meshStandardMaterial color={'#E78400'}/>
+            </mesh>
+
+            <mesh 
+                ref={helperRef}
+                visible={true}
+                castShadow
+                scale={scale} 
+                onClick={() => {
+                    addSticker()
+                    start()
+                }}
+                onContextMenu={() =>setMenuOpen(true)}
+                renderOrder = {stickers.length + 1}
+            >
+                    {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}
+                    <planeGeometry args={[stickerScale, stickerScale]} />
+                    <meshBasicMaterial 
+                        map={selectedStickerTexture} 
+                        transparent 
+                        side={THREE.DoubleSide} 
+                        opacity={0.6}                         
+                        depthWrite={false}
+                        depthTestd
+                        polygonOffset
+                        polygonOffsetFactor={-200}
+                        roughness={0.3}
+                        />
+            </mesh>
+
+            <Sticker stickers={stickers} duckRef={duckRef}/>
+
     </>
 }

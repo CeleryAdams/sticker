@@ -7,8 +7,15 @@ import Stage from './Stage.jsx'
 
 export default function World()
 {
+
     return <>
-        <Canvas shadows>
+        <Canvas 
+            shadows 
+            camera={{
+                fov: 25,
+                position: [ -3.3, 2.3, 4.5 ]
+            }}
+        >
             <Stage />
             <Duck />
         </Canvas>

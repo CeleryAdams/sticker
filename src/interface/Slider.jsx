@@ -61,6 +61,7 @@ export default function Slider()
             min={ sliderRange[0] }
             max={ sliderRange[1] }
             onChange={handleScaleChange}
+            onKeyDown={(event)=>event.preventDefault()}
         />
         <div className='plus' onClick={increment}>+</div>
     </>

@@ -1,4 +1,4 @@
-import { Center, Decal, useTexture } from '@react-three/drei'
+import { Decal } from '@react-three/drei'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
@@ -9,7 +9,6 @@ export default function Sticker({duckRef, stickers})
 
 
     return <>
-        <Center>
             {stickers.map(sticker => (
                 <Decal
                     key={sticker.id} 
@@ -28,10 +27,9 @@ export default function Sticker({duckRef, stickers})
                             depthTest
                             polygonOffset
                             polygonOffsetFactor={-4}
-                            roughness={0.2}
+                            roughness={0.3}
                             />
                 </Decal>
             ))}
-        </Center>
     </>
 }

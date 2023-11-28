@@ -9,7 +9,7 @@ export default create(subscribeWithSelector((set) =>
         phase: 'cleared',
         scale: 1,
         stickerRotation: 0,
-        selectedSticker: 'sticker',
+        selectedSticker: 'sticker-01',
         menuOpen: false,
 
         start: () => set((state) => state.phase !== 'start' ? { phase: 'start'} : {}),

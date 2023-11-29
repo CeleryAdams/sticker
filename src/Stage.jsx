@@ -17,10 +17,10 @@ export default function Stage()
 
         lightIntensity:
         {
-            value: 10,
+            value: 7,
             step: 0.1
         },
-        lightColor: '#cf98ff',
+        lightColor: '#f3c8ff',
 
     })
 
@@ -37,7 +37,7 @@ export default function Stage()
             value: 7,
             step: 0.1
         },
-        lightColor2: '#94a4fe',
+        lightColor2: '#aeb9fa',
 
     })
 
@@ -54,7 +54,7 @@ export default function Stage()
             value: 5,
             step: 0.1
         },
-        lightColor3: '#f41fb1',
+        lightColor3: '#ffb2e7',
 
     })
 
@@ -67,7 +67,7 @@ export default function Stage()
         <Environment
             // background
             // preset='warehouse'
-            files='/environment/empty_warehouse_01_1k.hdr'
+            files='/environment/empty_warehouse_01_1k_dark.hdr'
             
         >
             <Lightformer

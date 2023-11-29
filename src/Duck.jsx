@@ -21,6 +21,8 @@ export default function Duck()
     duckTexture.needsUpdate = true
 
     const duckGlossyTexture = useTexture("./baked-duck-glossy.jpg")
+    duckGlossyTexture.flipY = false
+    duckGlossyTexture.needsUpdate = true
 
 
     //global state
@@ -160,9 +162,9 @@ export default function Duck()
         >
             <meshStandardMaterial 
                 map={duckTexture} 
-                roughness={0.3}
+                roughness={1}
                 roughnessMap={duckGlossyTexture}
-                envMapIntensity={0.5}
+                envMapIntensity={0.8}
             />
         </mesh>
 

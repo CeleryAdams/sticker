@@ -13,7 +13,7 @@ export default function StickerMenu()
     //id and filename need to match
 
     const stickers = [
-        {id: 'sticker-01', texturePath: './stickers/sticker-01.png'},
+        // {id: 'sticker-01', texturePath: './stickers/sticker-01.png'},
         // {id: 'sticker-02', texturePath: './stickers/sticker-02.png'},
         // {id: 'sticker-03', texturePath: './stickers/sticker-03.png'},
         // {id: 'sticker-04', texturePath: './stickers/sticker-04.png'},

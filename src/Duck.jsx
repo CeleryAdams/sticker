@@ -16,7 +16,7 @@ export default function Duck()
     const { nodes, materials } = useGLTF("/duck.glb")
     console.log(nodes, materials)
 
-    const duckTexture = useTexture("./baked-duck.jpg")
+    const duckTexture = useTexture("./baked-duck-3.jpg")
     duckTexture.flipY = false
     duckTexture.needsUpdate = true
 
@@ -72,6 +72,8 @@ export default function Duck()
         setScale(1)
     }
 
+
+    //remove last sticker
     const undo = () => {
         setStickers((stickers) => {
             const stickersCopy = [...stickers]
@@ -162,9 +164,9 @@ export default function Duck()
         >
             <meshStandardMaterial 
                 map={duckTexture} 
-                roughness={1}
+                roughness={0.6}
                 roughnessMap={duckGlossyTexture}
-                envMapIntensity={0.8}
+                envMapIntensity={0.7}
             />
         </mesh>
 
@@ -194,7 +196,7 @@ export default function Duck()
                     map={selectedStickerTexture} 
                     transparent 
                     side={THREE.DoubleSide} 
-                    opacity={0.6}                         
+                    opacity={0.75}                         
                     depthWrite={false}
                     depthTestd
                     polygonOffset

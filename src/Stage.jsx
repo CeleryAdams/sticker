@@ -59,6 +59,17 @@ export default function Stage()
     })
 
 
+    const { ambientLightColor, ambientLightIntensity } = useControls({
+        ambientLightColor: '#d200ff',
+
+        ambientLightIntensity:
+        {
+            value: 0.3,
+            step: 0.1
+        }
+    })
+
+
     const directionalLight = useRef()
     useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
 
@@ -97,6 +108,7 @@ export default function Stage()
                     target={[0,0,0]}
             />
         </Environment>
+        <ambientLight color={ambientLightColor} intensity={ambientLightIntensity}/>
 
         {/* <directionalLight 
             color={lightColor} 

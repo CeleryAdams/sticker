@@ -27,7 +27,8 @@ export default function Sticker({duckRef, stickers})
                             depthTest
                             polygonOffset
                             polygonOffsetFactor={-4}
-                            roughness={0.3}
+                            roughness={0.25}
+                            envMapIntensity={0.7}
                             />
                 </Decal>
             ))}

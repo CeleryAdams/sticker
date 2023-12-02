@@ -26,7 +26,7 @@ export default function World()
             <EffectComposer disableNormalPass>
                 <HueSaturation saturation={0.1}/>
                 <ToneMapping />
-                <BrightnessContrast brightness={0.03} contrast={0.01}/>
+                <BrightnessContrast brightness={0.05} contrast={0.02}/>
             </EffectComposer>
         </Canvas>
         <Interface />   

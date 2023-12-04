@@ -60,6 +60,8 @@ export default function Duck()
         if (localStorage.getItem('savedStickers'))
         {
             const savedStickers = JSON.parse(localStorage.getItem('savedStickers'))
+            if (savedStickers.length > 0) start()
+   
             const loadStickers = savedStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}) )
             return loadStickers
         }

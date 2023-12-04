@@ -12,9 +12,8 @@ export default function Duck()
     const helperRef = useRef()
     const stickerScale = 0.15
 
-    //load duck model
-    const { nodes, materials } = useGLTF("/duck.glb")
-    console.log(nodes, materials)
+    //load duck model and textures
+    const { nodes } = useGLTF("/duck.glb")
 
     const duckTexture = useTexture("./baked-duck-3.jpg")
     duckTexture.flipY = false
@@ -30,13 +29,11 @@ export default function Duck()
     const scale = useSticker((state) => state.scale)
     const setScale = useSticker((state) => state.setScale)
     const stickerRotation = useSticker(state => state.stickerRotation)
-    const rotate45 = useSticker(state=> state.rotate45)
     const selectedSticker = useSticker(state=> state.selectedSticker)
-    const menuOpen = useSticker((state) => state.menuOpen)
     const setMenuOpen = useSticker((state) => state.setMenuOpen)
 
 
-    //load texture
+    //load sticker texture
     const selectedStickerTexture = useTexture(`./stickers/${selectedSticker}.png`)
 
     const textureCenter=new THREE.Vector2(0.5, 0.5)
@@ -46,8 +43,46 @@ export default function Duck()
     }, [stickerRotation])
 
 
+    //parse sticker textures from JSON
+    const parseStickerTexture = (selectedSticker, stickerRotation) =>
+    {
+        const parsedStickerTexture = new THREE.TextureLoader().load(`./stickers/${selectedSticker}.png`)
+        const textureCenter=new THREE.Vector2(0.5, 0.5)
+        parsedStickerTexture.center = textureCenter
+        parsedStickerTexture.rotation = stickerRotation
+        parsedStickerTexture.needsUpdate = true
+        return parsedStickerTexture
+    }
+
     //array of stickers
-    const [stickers, setStickers] = useState([])
+    const [stickers, setStickers] = useState(() => 
+    {
+        if (localStorage.getItem('savedStickers'))
+        {
+            const savedStickers = JSON.parse(localStorage.getItem('savedStickers'))
+            const loadStickers = savedStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}) )
+            return loadStickers
+        }
+        else return []
+    })
+
+    // retrieve stickers from local storage if available
+    // useEffect(() =>
+    // {
+    //     let savedStickers = localStorage.getItem('savedStickers') || []
+    //     savedStickers = JSON.parse(savedStickers)
+    //     const loadStickers = savedStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}) )
+    //     setStickers(loadStickers)
+    //     console.log(stickers)
+
+    // }, [])
+
+
+    useEffect(() =>
+    {
+        localStorage.setItem('savedStickers', JSON.stringify(stickers))
+    }, [stickers])
+
 
     const addSticker = () =>
     {
@@ -61,6 +96,7 @@ export default function Duck()
             position: [helperRef.current.position.x, helperRef.current.position.y, helperRef.current.position.z],
             scale: scale * stickerScale,
             stickerRotation: stickerRotation,
+            selectedSticker: selectedSticker,
             texture: stickerTexture
         }])   
     }
@@ -68,6 +104,7 @@ export default function Duck()
 
     //reset stickers
     const reset = () => {
+        localStorage.setItem('savedStickers', [])
         setStickers([])
         setScale(1)
     }
@@ -83,10 +120,6 @@ export default function Duck()
         start()
     }
 
-    // useEffect(() => {
-    //     console.log(stickers)
-    // }
-    // , [stickers])
 
     useEffect(() =>
     {
@@ -198,7 +231,7 @@ export default function Duck()
                     side={THREE.DoubleSide} 
                     opacity={0.75}                         
                     depthWrite={false}
-                    depthTestd
+                    depthTest
                     polygonOffset
                     polygonOffsetFactor={-200}
                     roughness={0.3}

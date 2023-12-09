@@ -9,6 +9,8 @@ const baseUrl = 'http://localhost:5000'
 export default function Storage()
 {   
     const setLoadStickers = useSticker((state) => state.setLoadStickers)
+    const savedStickers = useSticker((state) => state.savedStickers)
+
     const [ loadName, setLoadName ] = useState("")
     const [ saveName, setSaveName ] = useState("")
 
@@ -19,6 +21,12 @@ export default function Storage()
     const saveMenuRef = useRef()
 
 
+    useEffect(() =>
+    {
+        console.log('savedstickers:', savedStickers)
+    },[savedStickers])
+
+
     const fetchDuck = async (loadName) =>
     {
         const data = await axios.get(`${baseUrl}/saved/${loadName}`)
@@ -27,11 +35,9 @@ export default function Storage()
     }
 
     
-    const saveDuck = async (saveName) =>
+    const saveDuck = async (saveName, savedStickers) =>
     {   
-        console.log(saveName)
-        //TODO: get current list of stickers - send to global state
-        // const data = await axios.post(`${baseUrl}/saved`, {name: saveName, sticker_list: stickerList})
+        const data = await axios.post(`${baseUrl}/saved`, {name: saveName, sticker_list: savedStickers})
     }
 
 
@@ -62,25 +68,33 @@ export default function Storage()
     }
 
     
-    const handleLoadSubmit = (event) =>
+    const handleLoadSubmit = async (event) =>
     {
         event.preventDefault()
         try
         {
-            fetchDuck(loadName)
+            await fetchDuck(loadName)
             setLoadName("")
             setLoadMenuOpen(false)
         } catch (err) {
-            console.log(err.message)
-            //TODO display error message on screen
+            console.error(err)
+            if (err.response) console.error(err.response.data.message)
         }
     }
 
 
-    const handleSaveSubmit = (event) =>
+    const handleSaveSubmit = async (event) =>
     {
         event.preventDefault()
-        //TODO 
+        try
+        {
+            await saveDuck(saveName, savedStickers)
+            setSaveName("")
+            setSaveMenuOpen(false)
+        } catch (err) {
+            console.error(err)
+            if (err.response) console.error(err.response.data.message)
+        }
     }
 
 

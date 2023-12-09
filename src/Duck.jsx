@@ -33,6 +33,7 @@ export default function Duck()
     const setMenuOpen = useSticker((state) => state.setMenuOpen)
     const loadStickers = useSticker((state) => state.loadStickers)
     const setLoadStickers = useSticker((state) => state.setLoadStickers)
+    const setSavedStickers = useSticker((state) => state.setSavedStickers)
 
 
     //load sticker texture
@@ -87,12 +88,13 @@ export default function Duck()
 
 
 
-    //save current stickers to local storage
+    //save current stickers to local storage and global state
     useEffect(() =>
     {
         const stickersCopy = stickers.map((sticker) => ({...sticker, texture: null}))
         // console.log(JSON.stringify(stickersCopy))
         localStorage.setItem('savedStickers', JSON.stringify(stickersCopy))
+        setSavedStickers(stickersCopy)
     }, [stickers])
 
 

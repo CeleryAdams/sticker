@@ -12,6 +12,7 @@ export default create(subscribeWithSelector((set) =>
         selectedSticker: 'sticker-01',
         menuOpen: false,
         loadStickers: null,
+        savedStickers: null,
 
         start: () => set((state) => state.phase !== 'start' ? { phase: 'start'} : {}),
         clear: () => set((state) => state.phase === 'start' ? { phase: 'cleared'} : {}),
@@ -28,5 +29,6 @@ export default create(subscribeWithSelector((set) =>
         rotate45Cc: () => set((state) => ({stickerRotation: state.stickerRotation + Math.PI/4})),
         
         setLoadStickers: (value) => {set({ loadStickers: value })},
+        setSavedStickers: (value) => {set({savedStickers: value})}
     }
 }))

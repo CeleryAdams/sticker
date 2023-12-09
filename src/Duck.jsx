@@ -31,6 +31,8 @@ export default function Duck()
     const stickerRotation = useSticker(state => state.stickerRotation)
     const selectedSticker = useSticker(state=> state.selectedSticker)
     const setMenuOpen = useSticker((state) => state.setMenuOpen)
+    const loadStickers = useSticker((state) => state.loadStickers)
+    const setLoadStickers = useSticker((state) => state.setLoadStickers)
 
 
     //load sticker texture
@@ -50,39 +52,47 @@ export default function Duck()
         const textureCenter=new THREE.Vector2(0.5, 0.5)
         parsedStickerTexture.center = textureCenter
         parsedStickerTexture.rotation = stickerRotation
-        parsedStickerTexture.needsUpdate = true
+        // parsedStickerTexture.needsUpdate = true
         return parsedStickerTexture
     }
 
-    //array of stickers
+    //initialize array of stickers
     const [stickers, setStickers] = useState(() => 
     {
         if (localStorage.getItem('savedStickers'))
         {
             const savedStickers = JSON.parse(localStorage.getItem('savedStickers'))
+
+            //set global state to start if there are saved stickers loaded
             if (savedStickers.length > 0) start()
    
-            const loadStickers = savedStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}) )
-            return loadStickers
+            const loadedStickers = savedStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}) )
+            return loadedStickers
         }
         else return []
     })
 
-    // retrieve stickers from local storage if available
-    // useEffect(() =>
-    // {
-    //     let savedStickers = localStorage.getItem('savedStickers') || []
-    //     savedStickers = JSON.parse(savedStickers)
-    //     const loadStickers = savedStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}) )
-    //     setStickers(loadStickers)
-    //     console.log(stickers)
 
-    // }, [])
+    //load sticker settings from server
+    useEffect(()=>{
+        if (loadStickers)
+        {
+            console.log('stickers loaded')
+            const loadedStickers = loadStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}))
+            setStickers(loadedStickers)
+            setLoadStickers(null)
+            start()
+        }
+    }, [loadStickers])
 
 
+
+    //save current stickers to local storage
     useEffect(() =>
     {
-        localStorage.setItem('savedStickers', JSON.stringify(stickers))
+        const stickersCopy = stickers.map((sticker) => ({...sticker, texture: null}))
+        // console.log(JSON.stringify(stickersCopy))
+        localStorage.setItem('savedStickers', JSON.stringify(stickersCopy))
     }, [stickers])
 
 
@@ -123,6 +133,7 @@ export default function Duck()
     }
 
 
+    //subscribe to global state
     useEffect(() =>
     {
         const unsubscribeReset = useSticker.subscribe(

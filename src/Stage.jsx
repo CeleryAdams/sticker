@@ -1,4 +1,4 @@
-import { useControls } from 'leva'
+import { Leva, useControls } from 'leva'
 import { useRef } from 'react'
 import * as THREE from 'three'
 import { Environment, Lightformer, useHelper } from '@react-three/drei'
@@ -75,6 +75,7 @@ export default function Stage()
 
 
     return <>
+        <Leva hidden />
         <Environment
             // background
             // preset='warehouse'

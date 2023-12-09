@@ -1,5 +1,6 @@
 import useSticker from "../stores/useSticker.jsx"
 import StickerMenu from "./StickerMenu.jsx"
+import Storage from "./Storage.jsx"
 import Slider from "./slider.jsx"
 import { useEffect } from "react"
 
@@ -59,5 +60,6 @@ export default function Interface()
             <div className='rotate' onClick={rotate45}>↻</div>
         </div>
         <StickerMenu />
+        <Storage />
     </div>
 }

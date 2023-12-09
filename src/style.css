@@ -44,7 +44,7 @@ html, body, #root
   }
 }
 
-.reset, .undo, .info
+.reset, .undo, .info, .save, .load
 {
     font-family: 'Poppins', sans-serif;
     font-size: min(13px, 10vw);
@@ -64,8 +64,6 @@ html, body, #root
     cursor: pointer;
     transition: background-color 0.1s, transform 0.3s;
 }
-
-
 
 
 @media(hover: hover) {
@@ -100,14 +98,14 @@ html, body, #root
 
 @media screen and (min-width: 640px) {
 	.bottom-menu {
-		width: 400px;
+		width: 500px;
 		max-width: none;
 	}
 }
 
 .rotate, .open-menu {
-	width: 30px;
-	height: 30px;
+	width: 35px;
+	height: 35px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   color: rgb(255, 255, 255);
@@ -268,9 +266,29 @@ html, body, #root
 	background-color: white;
 	border-radius: 50%;
 	margin-top: -5px;
-    transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .slider-range:focus {
   outline: none;
+}
+
+
+.load-menu, .save-menu
+{
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  width: 30vw;
+  height: 20vh;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: rgb(133, 22, 139);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
 }

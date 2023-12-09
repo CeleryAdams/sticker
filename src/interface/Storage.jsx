@@ -21,11 +21,6 @@ export default function Storage()
     const saveMenuRef = useRef()
 
 
-    useEffect(() =>
-    {
-        console.log('savedstickers:', savedStickers)
-    },[savedStickers])
-
 
     const fetchDuck = async (loadName) =>
     {
@@ -41,7 +36,6 @@ export default function Storage()
     }
 
 
-
     const handleLoadInputChange = (event) => 
     {
       setLoadName(event.target.value)
@@ -50,7 +44,6 @@ export default function Storage()
     const handleSaveInputChange = (event) =>
     {
         setSaveName(event.target.value)
-        console.log(saveName)
     }
 
     const handleLoadClick = (event) =>

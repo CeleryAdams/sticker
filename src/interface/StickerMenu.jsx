@@ -7,6 +7,8 @@ export default function StickerMenu()
     const setSticker = useSticker((state) => state.setSticker)
     const menuOpen = useSticker((state) => state.menuOpen)
     const setMenuOpen = useSticker((state) => state.setMenuOpen)
+    const setStickerRotation = useSticker((state) => state.setStickerRotation)
+
     const menuRef = useRef()
 
 
@@ -49,8 +51,8 @@ export default function StickerMenu()
 
     const handleStickerClick = (sticker) =>
     {
+        setStickerRotation(0)
         setSticker(sticker.id)
-        // setMenuOpen(false)
     }
 
     //close menu on outside click

@@ -27,7 +27,8 @@ export default create(subscribeWithSelector((set) =>
 
         rotate45: () => set((state) => ({stickerRotation: state.stickerRotation - Math.PI/4})),
         rotate45Cc: () => set((state) => ({stickerRotation: state.stickerRotation + Math.PI/4})),
-        
+        setStickerRotation: (value) => {set({ stickerRotation: value })},
+
         setLoadStickers: (value) => {set({ loadStickers: value })},
         setSavedStickers: (value) => {set({savedStickers: value})}
     }

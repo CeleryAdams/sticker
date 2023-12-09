@@ -11,8 +11,8 @@ export default function Storage()
     const setLoadStickers = useSticker((state) => state.setLoadStickers)
     const savedStickers = useSticker((state) => state.savedStickers)
 
-    const [ loadName, setLoadName ] = useState("")
-    const [ saveName, setSaveName ] = useState("")
+    const [ loadName, setLoadName ] = useState('')
+    const [ saveName, setSaveName ] = useState('')
 
     const [ loadMenuOpen, setLoadMenuOpen ] = useState(false)
     const [ saveMenuOpen, setSaveMenuOpen ] = useState(false)
@@ -67,7 +67,7 @@ export default function Storage()
         try
         {
             await fetchDuck(loadName)
-            setLoadName("")
+            setLoadName('')
             setLoadMenuOpen(false)
         } catch (err) {
             console.error(err)
@@ -82,7 +82,7 @@ export default function Storage()
         try
         {
             await saveDuck(saveName, savedStickers)
-            setSaveName("")
+            setSaveName('')
             setSaveMenuOpen(false)
         } catch (err) {
             console.error(err)
@@ -131,12 +131,12 @@ export default function Storage()
                     <label>Name your duck</label>
                     <input 
                         onChange={handleSaveInputChange}
-                        type="text"
-                        name="saveName"
-                        id="saveName"
+                        type='text'
+                        name='saveName'
+                        id='saveName'
                         value={saveName}
                     />
-                    <button type="submit">Submit</button>
+                    <button type='submit'>Submit</button>
                 </form>
             </div>
         }
@@ -154,12 +154,12 @@ export default function Storage()
                     <label>Enter Name</label>
                     <input 
                         onChange={handleLoadInputChange}
-                        type="text"
-                        name="loadName"
-                        id="loadName"
+                        type='text'
+                        name='loadName'
+                        id='loadName'
                         value={loadName}
                     />
-                    <button type="submit">Submit</button>
+                    <button type='submit'>Submit</button>
                 </form>
             </div>
         }

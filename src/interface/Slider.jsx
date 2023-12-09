@@ -1,5 +1,5 @@
-import useSticker from "../stores/useSticker"
-import { useEffect } from "react"
+import useSticker from '../stores/useSticker'
+import { useEffect } from 'react'
 
 
 export default function Slider()

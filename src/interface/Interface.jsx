@@ -1,8 +1,8 @@
-import useSticker from "../stores/useSticker.jsx"
-import StickerMenu from "./StickerMenu.jsx"
-import Storage from "./Storage.jsx"
-import Slider from "./slider.jsx"
-import { useEffect } from "react"
+import useSticker from '../stores/useSticker.jsx'
+import StickerMenu from './StickerMenu.jsx'
+import Storage from './Storage.jsx'
+import Slider from './slider.jsx'
+import { useEffect } from 'react'
 
 export default function Interface()
 {

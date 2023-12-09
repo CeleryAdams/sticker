@@ -1,4 +1,4 @@
-import useSticker from "../stores/useSticker.jsx"
+import useSticker from '../stores/useSticker.jsx'
 import { useState, useEffect, useRef } from 'react'
 
 export default function StickerMenu()
@@ -67,9 +67,6 @@ export default function StickerMenu()
 
         return () => document.removeEventListener('click', handleOutsideClick)
     }, [menuRef])
-
-
-    //prevent event propagation from closing menu automatically
 
 
     return <div>

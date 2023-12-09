@@ -1,6 +1,5 @@
-import { Decal, useTexture } from '@react-three/drei'
-import { useEffect, useRef, useState } from 'react'
-import * as THREE from 'three'
+import { Decal } from '@react-three/drei'
+import { useRef } from 'react'
 
 
 export default function Sticker({duckRef, stickers})

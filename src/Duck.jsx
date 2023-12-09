@@ -13,13 +13,13 @@ export default function Duck()
     const stickerScale = 0.15
 
     //load duck model and textures
-    const { nodes } = useGLTF("/duck.glb")
+    const { nodes } = useGLTF('/duck.glb')
 
-    const duckTexture = useTexture("./baked-duck-3.jpg")
+    const duckTexture = useTexture('./baked-duck-3.jpg')
     duckTexture.flipY = false
     duckTexture.needsUpdate = true
 
-    const duckGlossyTexture = useTexture("./baked-duck-glossy.jpg")
+    const duckGlossyTexture = useTexture('./baked-duck-glossy.jpg')
     duckGlossyTexture.flipY = false
     duckGlossyTexture.needsUpdate = true
 
@@ -195,16 +195,6 @@ export default function Duck()
 
     return <>
         <OrbitControls makeDefault target={[0, 0.4, 0]}/>
-
-
-        {/* <mesh 
-            ref={ duckRef }
-            onPointerEnter={() => document.body.style.cursor = 'grab'}
-            onPointerLeave={() => document.body.style.cursor = 'default'}
-        >
-            <sphereGeometry />
-            <meshNormalMaterial depthWrite={false} wireframe/>
-        </mesh> */}
 
         <mesh ref = { duckRef } 
             geometry={nodes.duck.geometry} 

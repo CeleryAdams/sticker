@@ -3,7 +3,6 @@ import Duck from './Duck.jsx'
 import Interface from './interface/Interface.jsx'
 import './style.css'
 import Stage from './Stage.jsx'
-import * as THREE from 'three'
 import { ToneMapping, EffectComposer, HueSaturation, BrightnessContrast } from '@react-three/postprocessing'
 
 

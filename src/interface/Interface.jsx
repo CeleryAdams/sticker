@@ -58,6 +58,7 @@ export default function Interface()
         <div className='bottom-menu'>
             <div className='open-menu' onClick={openMenu}>☺</div>
             <Slider />
+            <div className='rotate' onClick={rotate45Cc}>↺</div>
             <div className='rotate' onClick={rotate45}>↻</div>
         </div>
         <StickerMenu />

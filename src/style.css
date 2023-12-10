@@ -140,7 +140,7 @@ html, body, #root
   transform: translateX(-50%) translateY(-50%);
 }
 
-.close-button {
+.close-button, .next-button, .previous-button {
   position: absolute;
   transform: scaleY(72%) translateX(30px) translateY(-40px);
   right: -20px;
@@ -162,6 +162,18 @@ html, body, #root
 	/* background-color: rgba(240, 240, 240, 0.2);
   flex-shrink: 0; */
 }
+
+
+.next-button
+{
+  transform: translateX(30px) translateY(40px);
+}
+
+.previous-button
+{
+  transform: translateX(30px) translateY(150px);
+}
+
 
 .grid-menu {
   position: absolute;

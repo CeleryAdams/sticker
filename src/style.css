@@ -22,7 +22,7 @@ html, body, #root
 .button-container
 {
   position: absolute;
-	left: 10px;
+	right: 10px;
 	top: 10px;
 	transform: translateX(0%);
 	display: flex;
@@ -69,7 +69,6 @@ html, body, #root
 @media(hover: hover) {
   .reset:hover, .reset:active, .undo:hover, .undo:active
   {
-      background-color:  rgb(52, 83, 219);
       transform: scale(1.05);
   }
   
@@ -282,7 +281,7 @@ html, body, #root
   width: 30vw;
   height: 20vh;
   transform: translateX(-50%) translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255);
   font-family: 'Poppins', sans-serif;
   font-size: 26px;
   font-weight: 400;
@@ -291,4 +290,16 @@ html, body, #root
   justify-content: center;
   align-items: center;
   pointer-events: auto;
+}
+
+.error 
+{
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  background-color: rgb(244, 141, 255);
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: auto;
+  width: 20vw;
+  height: 10vh;
 }

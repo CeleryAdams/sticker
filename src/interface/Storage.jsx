@@ -16,11 +16,13 @@ export default function Storage()
 
     const [ loadMenuOpen, setLoadMenuOpen ] = useState(false)
     const [ saveMenuOpen, setSaveMenuOpen ] = useState(false)
+
+    const [ errorMessageOpen, setErrorMessageOpen ] = useState(false)
+    const [ errorMessage, setErrorMessage ] = useState('')
+
+    const [ saveMessageOpen, setSaveMessageOpen ] = useState(false)
+    const [ saveMessage, setSaveMessage ] = useState('')
     
-    const loadMenuRef = useRef()
-    const saveMenuRef = useRef()
-
-
 
     const fetchDuck = async (loadName) =>
     {
@@ -56,6 +58,7 @@ export default function Storage()
     const handleSaveClick = (event) =>
     {
         setSaveMenuOpen(true)
+        setSaveMessageOpen(false)
         setLoadMenuOpen(false)
         event.stopPropagation()
     }
@@ -67,12 +70,15 @@ export default function Storage()
         try
         {
             await fetchDuck(loadName)
-            setLoadName('')
             setLoadMenuOpen(false)
         } catch (err) {
+            setErrorMessageOpen(true)
             console.error(err)
-            if (err.response) console.error(err.response.data.message)
+            if (err.response) setErrorMessage(err.response.data.message)
+        } finally {
+            setLoadName('')
         }
+        
     }
 
 
@@ -82,16 +88,28 @@ export default function Storage()
         try
         {
             await saveDuck(saveName, savedStickers)
+            const message = `${saveName} has been saved`
+            setSaveMessage(message)
+            setSaveMessageOpen(true)
             setSaveName('')
-            setSaveMenuOpen(false)
+            // setSaveMenuOpen(false)
         } catch (err) {
+            setErrorMessageOpen(true)
             console.error(err)
-            if (err.response) console.error(err.response.data.message)
+            if (err.response) 
+            {
+                setErrorMessage(err.response.data.message)
+            }
+            else setErrorMessage(err.message)
         }
     }
 
 
     //close menu on outside click
+    const loadMenuRef = useRef()
+    const saveMenuRef = useRef()
+    const errorMessageRef = useRef()
+
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (loadMenuRef.current && !loadMenuRef.current.contains(event.target))
@@ -116,6 +134,19 @@ export default function Storage()
         return () => document.removeEventListener('click', handleOutsideClick)
     }, [saveMenuRef])
 
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (errorMessageRef.current && !errorMessageRef.current.contains(event.target))
+                setErrorMessageOpen(false)
+                setErrorMessage('')
+                event.stopPropagation()
+        }
+
+        document.addEventListener('click', handleOutsideClick)
+
+        return () => document.removeEventListener('click', handleOutsideClick)
+    }, [errorMessageRef])
+
 
 
     return <>
@@ -127,17 +158,23 @@ export default function Storage()
         </div>
         {saveMenuOpen && 
             <div className='save-menu' ref={saveMenuRef}>
-                <form onSubmit={handleSaveSubmit}>
-                    <label>Name your duck</label>
-                    <input 
-                        onChange={handleSaveInputChange}
-                        type='text'
-                        name='saveName'
-                        id='saveName'
-                        value={saveName}
-                    />
-                    <button type='submit'>Submit</button>
-                </form>
+                {!saveMessageOpen &&
+                    
+                    <form onSubmit={handleSaveSubmit}>
+                        <label>Name your duck</label>
+                        <input 
+                            onChange={handleSaveInputChange}
+                            type='text'
+                            name='saveName'
+                            id='saveName'
+                            value={saveName}
+                        />
+                        <button type='submit'>Submit</button>
+                    </form>
+                }
+                {saveMessageOpen && 
+                    <div>{ `${saveMessage}` }</div>
+                }
             </div>
         }
 
@@ -161,6 +198,13 @@ export default function Storage()
                     />
                     <button type='submit'>Submit</button>
                 </form>
+            </div>
+        }
+
+
+        {errorMessageOpen &&
+            <div className='error' ref={errorMessageRef}>
+                {`Error: ${errorMessage}`}
             </div>
         }
     </>

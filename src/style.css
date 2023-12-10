@@ -22,11 +22,11 @@ html, body, #root
 .button-container
 {
   position: absolute;
-	right: 10px;
+	left: 50vw;
 	top: 10px;
-	transform: translateX(0%);
+	transform: translateX(-50%);
 	display: flex;
-  flex-direction: column;
+  flex-direction: row;
 	align-items:center;
 	justify-content:left;
   cursor: pointer;
@@ -67,7 +67,7 @@ html, body, #root
 
 
 @media(hover: hover) {
-  .reset:hover, .reset:active, .undo:hover, .undo:active
+  .reset:hover, .reset:active, .undo:hover, .undo:active, .save:hover, .save:active, .load:hover, .load:active
   {
       transform: scale(1.05);
   }
@@ -143,14 +143,15 @@ html, body, #root
 .close-button {
   position: absolute;
   transform: scaleY(72%) translateX(30px) translateY(-40px);
-  right: 0;
-  top: 0;
+  right: -20px;
+  top: -20px;
   font-family: 'Poppins', sans-serif;
+  font-size: 24px;
   font-weight: 100;
-  width: 20px;
-	height: 20px;
+  width: 60px;
+	height: 60px;
   font-family: 'Poppins', sans-serif;
-  font-weight: 100;
+  font-weight: 500;
   color: rgb(255, 255, 255);
   border-radius: 50%;
   display: flex;
@@ -302,4 +303,9 @@ html, body, #root
   pointer-events: auto;
   width: 20vw;
   height: 10vh;
+}
+
+input, button
+{
+  font-size: 16px
 }

@@ -22,6 +22,8 @@ export default function Storage()
 
     const [ saveMessageOpen, setSaveMessageOpen ] = useState(false)
     const [ saveMessage, setSaveMessage ] = useState('')
+
+    const [ nameError, setNameError ] = useState(null)
     
 
     const fetchDuck = async (loadName) =>
@@ -45,7 +47,12 @@ export default function Storage()
 
     const handleSaveInputChange = (event) =>
     {
+        setNameError(null)
         setSaveName(event.target.value)
+        if (!/^[a-zA-Z0-9]+$/i.test(saveName))
+        {
+            setNameError('Please use only letters and numbers')
+        }
     }
 
     const handleLoadClick = (event) =>
@@ -92,7 +99,6 @@ export default function Storage()
             setSaveMessage(message)
             setSaveMessageOpen(true)
             setSaveName('')
-            // setSaveMenuOpen(false)
         } catch (err) {
             setErrorMessageOpen(true)
             console.error(err)
@@ -174,6 +180,9 @@ export default function Storage()
                 }
                 {saveMessageOpen && 
                     <div>{ `${saveMessage}` }</div>
+                }
+                {nameError &&
+                    <div>{ `${nameError}`}</div>
                 }
             </div>
         }

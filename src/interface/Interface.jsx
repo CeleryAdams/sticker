@@ -50,6 +50,7 @@ export default function Interface()
 
     return <div className='interface'>
         <div className='button-container'>
+            <Storage />
             <div className='undo' onClick={ undo }>Undo</div>
             <div className='reset' onClick={ clear }>Clear</div>
             <div className='info'>Info</div>
@@ -60,6 +61,6 @@ export default function Interface()
             <div className='rotate' onClick={rotate45}>↻</div>
         </div>
         <StickerMenu />
-        <Storage />
+        
     </div>
 }

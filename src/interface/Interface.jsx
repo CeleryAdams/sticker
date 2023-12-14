@@ -1,4 +1,5 @@
 import useSticker from '../stores/useSticker.jsx'
+import ContextMenu from './ContextMenu.jsx'
 import StickerMenu from './StickerMenu.jsx'
 import Storage from './Storage.jsx'
 import Slider from './slider.jsx'
@@ -17,7 +18,7 @@ export default function Interface()
 
     //keyboard controls for rotation
     const handleKeyDown = (event) =>
-    {
+    {``
         switch (event.key)
         {
             case ' ':
@@ -62,6 +63,6 @@ export default function Interface()
             <div className='rotate' onClick={rotate45}>↻</div>
         </div>
         <StickerMenu />
-        
+        <ContextMenu />   
     </div>
 }

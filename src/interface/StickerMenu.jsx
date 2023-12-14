@@ -1,5 +1,5 @@
 import useSticker from '../stores/useSticker.jsx'
-import { useState, useEffect, useMemo, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function StickerMenu()
 {
@@ -54,6 +54,22 @@ export default function StickerMenu()
         {id: 'sticker-30', texturePath: './stickers/sticker-30.png'},
         {id: 'sticker-31', texturePath: './stickers/sticker-31.png'},
         {id: 'sticker-32', texturePath: './stickers/sticker-32.png'},
+        {id: 'sticker-33', texturePath: './stickers/sticker-33.png'},
+        {id: 'sticker-34', texturePath: './stickers/sticker-34.png'},
+        {id: 'sticker-35', texturePath: './stickers/sticker-35.png'},
+        {id: 'sticker-36', texturePath: './stickers/sticker-36.png'},
+        {id: 'sticker-37', texturePath: './stickers/sticker-37.png'},
+        {id: 'sticker-38', texturePath: './stickers/sticker-38.png'},
+        {id: 'sticker-39', texturePath: './stickers/sticker-39.png'},
+        {id: 'sticker-40', texturePath: './stickers/sticker-40.png'},
+        {id: 'sticker-41', texturePath: './stickers/sticker-41.png'},
+        {id: 'sticker-42', texturePath: './stickers/sticker-42.png'},
+        {id: 'sticker-43', texturePath: './stickers/sticker-43.png'},
+        {id: 'sticker-44', texturePath: './stickers/sticker-44.png'},
+        {id: 'sticker-45', texturePath: './stickers/sticker-45.png'},
+        {id: 'sticker-46', texturePath: './stickers/sticker-46.png'},
+        {id: 'sticker-47', texturePath: './stickers/sticker-47.png'},
+        {id: 'sticker-48', texturePath: './stickers/sticker-48.png'},
     ]
 
 
@@ -67,9 +83,6 @@ export default function StickerMenu()
     {
         currentPage > 1 ? setShowPrevButton(true) : setShowPrevButton(false)
         endIndex >= stickers.length ? setShowNextButton(false) : setShowNextButton(true)
-        console.log('startIndex:', startIndex)
-        console.log('endIndex:', endIndex)
-        console.log(currentStickers)
     }, [currentPage])
 
 
@@ -77,11 +90,11 @@ export default function StickerMenu()
     {
         setStickerRotation(0)
         setSticker(sticker.id)
+        setMenuOpen(false)
     }
 
     //close menu on outside click
     useEffect(() => {
-        // console.log(menuRef)
         const handleOutsideClick = (event) => {
             if (menuRef.current &&
                 !menuRef.current.contains(event.target) &&

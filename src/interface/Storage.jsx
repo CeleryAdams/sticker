@@ -64,6 +64,7 @@ export default function Storage()
 
     const handleSaveClick = (event) =>
     {
+        console.log(saveMenuOpen)
         setSaveMenuOpen(true)
         setSaveMessageOpen(false)
         setLoadMenuOpen(false)

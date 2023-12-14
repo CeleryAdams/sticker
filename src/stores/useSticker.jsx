@@ -9,8 +9,10 @@ export default create(subscribeWithSelector((set) =>
         phase: 'cleared',
         scale: 1,
         stickerRotation: 0,
-        selectedSticker: 'sticker-01',
+        selectedSticker: 'sticker-05',
         menuOpen: false,
+        contextMenuOpen: false,
+        contextMenuPosition: {x:0, y:0},
         loadStickers: null,
         savedStickers: null,
 
@@ -24,6 +26,9 @@ export default create(subscribeWithSelector((set) =>
         setSticker: (value) => {set({ selectedSticker: value })},
 
         setMenuOpen: (value) => {set({ menuOpen: value })},
+        setContextMenuOpen: (value) => {set({ contextMenuOpen: value })},
+
+        setContextMenuPosition: (value) => {set({ contextMenuPosition: value})},
 
         rotate45: () => set((state) => ({stickerRotation: state.stickerRotation - Math.PI/4})),
         rotate45Cc: () => set((state) => ({stickerRotation: state.stickerRotation + Math.PI/4})),

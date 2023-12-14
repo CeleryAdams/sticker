@@ -26,7 +26,7 @@ export default function Sticker({duckRef, stickers})
                             polygonOffset
                             polygonOffsetFactor={-4}
                             roughness={0.25}
-                            envMapIntensity={0.75}
+                            envMapIntensity={0.7}
                             />
                 </Decal>
             ))}

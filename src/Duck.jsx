@@ -15,7 +15,7 @@ export default function Duck()
     //load duck model and textures
     const { nodes } = useGLTF('/duck.glb')
 
-    const duckTexture = useTexture('./baked-duck-3.jpg')
+    const duckTexture = useTexture('./baked-duck-4.jpg')
     duckTexture.flipY = false
     duckTexture.needsUpdate = true
 
@@ -30,7 +30,11 @@ export default function Duck()
     const setScale = useSticker((state) => state.setScale)
     const stickerRotation = useSticker(state => state.stickerRotation)
     const selectedSticker = useSticker(state=> state.selectedSticker)
-    const setMenuOpen = useSticker((state) => state.setMenuOpen)
+    // const setMenuOpen = useSticker((state) => state.setMenuOpen)
+    const setContextMenuOpen = useSticker((state) => state.setContextMenuOpen)
+    const contextMenuOpen = useSticker((state) => state.contextMenuOpen)
+    const setContextMenuPosition = useSticker((state) => state.setContextMenuPosition)
+
     const loadStickers = useSticker((state) => state.loadStickers)
     const setLoadStickers = useSticker((state) => state.setLoadStickers)
     const setSavedStickers = useSticker((state) => state.setSavedStickers)
@@ -160,7 +164,7 @@ export default function Duck()
 
 
     useFrame((state) => {
-        updateHelperPosition(state.raycaster)
+        if (!contextMenuOpen) updateHelperPosition(state.raycaster)
     })
 
 
@@ -204,7 +208,7 @@ export default function Duck()
                 map={duckTexture} 
                 roughness={0.6}
                 roughnessMap={duckGlossyTexture}
-                envMapIntensity={0.7}
+                envMapIntensity={0.67}
             />
         </mesh>
 
@@ -225,7 +229,15 @@ export default function Duck()
                 addSticker()
                 start()
             }}
-            onContextMenu={() =>setMenuOpen(true)}
+            onPointerEnter={()=> document.body.style.cursor = 'grab'}
+            onPointerLeave={()=> document.body.style.cursor = 'default'}
+            onContextMenu={(event) => 
+                {
+                    console.log('context menu triggered')
+                    event.stopPropagation()
+                    setContextMenuPosition({x: event.clientX, y: event.clientY})
+                    setContextMenuOpen(!contextMenuOpen)
+                }}
             renderOrder = {stickers.length + 1}
         >
                 {/* <boxGeometry args={[0.5, 0.5, 0.25]} /> */}

@@ -198,7 +198,7 @@ export default function Duck()
     }
 
     return <>
-        <OrbitControls makeDefault target={[0, 0.4, 0]}/>
+        <OrbitControls makeDefault target={[-0.08, 0.4, 0]}/>
 
         <mesh ref = { duckRef } 
             geometry={nodes.duck.geometry} 

@@ -1,4 +1,4 @@
-html, body, #root
+html, body, #root, .speckle
 {
     position: fixed;
     top: 0;
@@ -6,7 +6,23 @@ html, body, #root
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: rgb(223, 189, 255);
+}
+
+html
+{
+  background: linear-gradient(#5a3181 10%, #7C7FB4 98%);
+}
+
+body
+{
+  background: url("./css/grid.png"), repeat;
+  background-size: max(12vw, 130px);
+}
+
+.speckle
+{
+  background: url("./css/speckle.png"), repeat;
+  background-size: max(2vw, 25px);
 }
 
 .interface

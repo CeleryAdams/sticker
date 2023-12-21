@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import useSticker from '../stores/useSticker'
+import LoadButton from '/images/load-button.png'
+import SaveButton from '/images/save-button.png'
 
 
 const baseUrl = 'http://localhost:5000'
@@ -158,10 +160,10 @@ export default function Storage()
 
     return <>
         <div 
-            className='save' 
+            className='save top-button' 
             onClick={handleSaveClick}
         >
-            Save
+            <img src={SaveButton} alt='save button' tabIndex='0'/>
         </div>
         {saveMenuOpen && 
             <div className='save-menu' ref={saveMenuRef}>
@@ -190,10 +192,10 @@ export default function Storage()
 
 
         <div 
-            className='load' 
+            className='load top-button' 
             onClick={handleLoadClick}
         >
-            Load
+            <img src={LoadButton} alt='load button'/>
         </div>
         {loadMenuOpen && 
             <div className='load-menu' ref={loadMenuRef}>

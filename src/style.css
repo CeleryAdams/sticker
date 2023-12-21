@@ -15,13 +15,13 @@ html
 
 body
 {
-  background: url("./css/grid.png"), repeat;
+  background: url("./images/grid.png"), repeat;
   background-size: max(12vw, 130px);
 }
 
 .speckle
 {
-  background: url("./css/speckle.png"), repeat;
+  background: url("./images/speckle.png"), repeat;
   background-size: max(2vw, 25px);
 }
 
@@ -35,60 +35,74 @@ body
     pointer-events: none;
 }
 
-.button-container
+
+.top-menu
 {
   position: absolute;
-	left: 50vw;
-	top: 10px;
-	transform: translateX(-50%);
-	display: flex;
+  top: 0;
+  width: 100%;
+  display: flex;
   flex-direction: row;
-	align-items:center;
-	justify-content:left;
+  justify-content: space-between;
   cursor: pointer;
   pointer-events: auto;
 }
 
-@media screen and (min-width: 640px) {
-	.button-container
-  {
-    flex-direction: row;
-    transform: none;
-    left: auto; /* Reset left property */
-    right: 30px; 
-    top: 10px; 
+.top-left-buttons, .top-right-buttons
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.top-left-buttons
+{
+  margin-left: 15px;
+}
+
+.top-right-buttons
+{
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 540px)
+{
+  .top-menu{
+    justify-content: space-evenly;
   }
 }
 
-.reset, .undo, .info, .save, .load
+
+.top-button, .info
 {
     font-family: 'Poppins', sans-serif;
-    font-size: min(13px, 10vw);
-    width: 30vw;
-    height: 30vw;
-    max-width: 50px;
-    max-height: 50px;
-    margin-top: 16px;
-    margin-left: 16px;
-    background-color: rgb(105, 187, 162);
-    color: #fff;
-    border-radius: 50%;
+    font-size: 13pt;
+    font-weight: 600;
+    /* height: 68px; */
+    height: min(15.5vw, 68px);
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     pointer-events: auto;
     cursor: pointer;
-    transition: background-color 0.1s, transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.info
+{
+  position: absolute;
+  padding-left: 15px;
+  bottom: 25px;
 }
 
 
 @media(hover: hover) {
-  .reset:hover, .reset:active, .undo:hover, .undo:active, .save:hover, .save:active, .load:hover, .load:active
+  .top-button:hover, .top-button:active, .info:hover, .info:active
   {
       transform: scale(1.05);
   }
   
-  .reset:active, .undo:active
+  .top-button:active, .info:active
   {
       transform: transform 0s;
   }
@@ -117,6 +131,8 @@ body
 		max-width: none;
 	}
 }
+
+
 
 .rotate, .open-menu {
 	width: 35px;

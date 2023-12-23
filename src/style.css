@@ -35,6 +35,9 @@ body
     pointer-events: none;
 }
 
+/*
+//Top menu
+*/
 
 .top-menu
 {
@@ -71,33 +74,26 @@ body
   }
 }
 
-
 .top-button, .info
 {
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif;
     font-size: 13pt;
-    font-weight: 600;
-    /* height: 68px; */
+    font-weight: 600; */
     height: min(15.5vw, 68px);
+    box-sizing: border-box;
+    object-fit: scale-down;
     margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
-    display: flex;
+    /* display: flex; */
     pointer-events: auto;
     cursor: pointer;
     transition: transform 0.3s;
 }
 
-.info
-{
-  position: absolute;
-  padding-left: 15px;
-  bottom: 25px;
-}
-
 
 @media(hover: hover) {
-  .top-button:hover, .top-button:active, .info:hover, .info:active
+  .top-button:hover, .top-button:active, .info:hover, .info:active, .bottom-button:hover, .bottom-button:active
   {
       transform: scale(1.05);
   }
@@ -108,60 +104,96 @@ body
   }
 }
 
-.bottom-menu {
+
+/*
+//Bottom menu
+*/
+
+.info
+{
+  position: absolute;
+  padding-left: 15px;
+  bottom: 25px;
+  height: min(11vw, 50px);
+  object-fit: contain;
+}
+
+
+.bottom-menu
+{
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-center-menu {
 	position: absolute;
 	left: 50%;
-	bottom: 10px;
-	height: 48px;
-	width: 80vw;
+	bottom: 30px;
+	width: 45vw;
+  min-width: 500px;
   transform: translateX(-50%);
-	max-width: 350px;
 	border-radius: 20px 20px 0 0;
 	display: flex;
 	align-items:center;
 	justify-content:space-between;
-	padding:0 21px 6px 16px;
   cursor: pointer;
   pointer-events: auto;
 }
 
-@media screen and (min-width: 640px) {
-	.bottom-menu {
-		width: 500px;
-		max-width: none;
+
+.bottom-button {
+  height: min(10vw, 50px);
+  margin-left: 5px;
+  margin-right: 5px;
+  /* display: flex; */
+  pointer-events: auto;
+  cursor: pointer;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+
+@media screen and (max-width: 750px) {
+  .bottom-menu{
+    width: 85vw;
+  }
+  .bottom-center-menu 
+  {
+		width: 85vw;
+    min-width: auto;
+    bottom: 20px;
 	}
+  .info
+  {
+    right: 0;
+    margin-right: 0;
+    padding-bottom: 4px;
+    bottom: max(min(15.5vw, 70px), 50px);
+  }
+  .bottom-button
+  {
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+
+}
+
+img
+{
+  max-height: 100%;
 }
 
 
-
-.rotate, .open-menu {
-	width: 35px;
-	height: 35px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: rgb(255, 255, 255);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-	background-color: rgb(191, 113, 255);
-  flex-shrink: 0;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.rotate {
-  transform: rotate(90deg);
-  font-size: 20px;
-  margin-left: 18px;
-}
-
-
-.open-menu {
-  font-size: 22px;
-  margin-right: 18px;
-  overflow: hidden;
-}
+/*
+//Sticker Menu
+*/
 
 .menu-container{
   position: absolute;
@@ -268,13 +300,13 @@ body
 }
 
 
-.plus, .minus {
+/* .plus, .minus {
   font-family: 'Poppins', sans-serif;
   font-size: 26px;
   font-weight: 400;
   color: rgb(255, 255, 255);
   flex-shrink: 0;
-}
+} */
 
 .slider-range {
 	width: 100%;

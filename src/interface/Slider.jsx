@@ -52,7 +52,7 @@ export default function Slider()
 
 
     return <>
-        <div className='minus' onClick={decrement}>-</div>
+        {/* <div className='minus' onClick={decrement}>-</div> */}
         <input
             className='slider-range'
             type='range'
@@ -63,6 +63,6 @@ export default function Slider()
             onChange={handleScaleChange}
             onKeyDown={(event)=>event.preventDefault()}
         />
-        <div className='plus' onClick={increment}>+</div>
+        {/* <div className='plus' onClick={increment}>+</div> */}
     </>
 }

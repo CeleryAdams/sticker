@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import ClearButton from '/images/clear-button.png'
 import UndoButton from '/images/undo-button.png'
 import InfoButton from '/images/info-button.png'
-import MenuButton from '/images/star-button.png'
+import StarButton from '/images/star-button.png'
 import LeftButton from '/images/left-button.png'
 import RightButton from '/images/right-button.png'
 
@@ -69,7 +69,7 @@ export default function Interface()
         <div className='bottom-menu'>
             <div className='info'><img src={InfoButton} alt='info button'/></div>
             <div className='bottom-center-menu'>
-                <div className='open-menu bottom-button' onClick={openMenu}><img src={MenuButton} alt='sticker menu button'/></div>
+                <div className='open-menu bottom-button' onClick={openMenu}><img src={StarButton} alt='sticker menu button'/></div>
                 <Slider />
                 <div className='rotate bottom-button' onClick={rotate45Cc}><img src={LeftButton} alt='rotate left button'/></div>
                 <div className='rotate bottom-button' onClick={rotate45}><img src={RightButton} alt='rotate left button'/></div>

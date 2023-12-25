@@ -1,5 +1,11 @@
 import useSticker from '../stores/useSticker.jsx'
 import { useEffect, useRef } from 'react'
+import LeftContext from '/images/left-context.png'
+import RightContext from '/images/right-context.png'
+import StarContext from '/images/star-context.png'
+import PlusContext from '/images/plus-context.png'
+import MinusContext from '/images/minus-context.png'
+import CloseContext from '/images/close-context.png'
 
 export default function ContextMenu()
 {
@@ -51,26 +57,36 @@ export default function ContextMenu()
                     top: `${contextMenuPosition.y}px`
                 }}
             >
-                <div className='rotate' onClick={(event)=>
-                    {
-                        setMenuOpen(!menuOpen)
-                        setContextMenuOpen(false)
-                        event.stopPropagation()
-                    }
-                    }>{':)'}</div>
-                <div className='rotate' onClick={rotate45Cc}>↺</div>
-                <div className='rotate' onClick={rotate45}>↻</div>
-                <div className='rotate' onClick={increment}>+</div>
-                <div className='rotate' onClick={decrement}>-</div>
-                <div className='rotate' 
-                    onClick={(event)=>
-                    {
-                        setContextMenuOpen(false)
-                        event.stopPropagation()
-                    }}
-                >x
+                
+                <div className='rotate-group'>
+                    <div className='rotate context-button' onClick={rotate45Cc}><img src={LeftContext} alt='rotate left context menu button'/></div>
+                    <div className='rotate context-button' onClick={rotate45}><img src={RightContext} alt='rotate right context menu button'/></div>
+                </div>
+
+                <div className='context-group'>
+                    <div className='open-menu context-button' onClick={(event)=>
+                        {
+                            setMenuOpen(!menuOpen)
+                            setContextMenuOpen(false)
+                            event.stopPropagation()
+                        }
+                        }><img src={StarContext} alt='open sticker menu context menu button'/>
+                    </div>
+                    <div className='close context-button' 
+                        onClick={(event)=>
+                        {
+                            setContextMenuOpen(false)
+                            event.stopPropagation()
+                        }}
+                        ><img src={CloseContext} alt='close context menu button'/>
+                    </div>
+                </div>
+                <div className='size-group'>
+                    <div className='increment context-button' onClick={increment}><img src={PlusContext} alt='increase size context menu button'/></div>
+                    <div className='decrement context-button' onClick={decrement}><img src={MinusContext} alt='decrease size context menu button'/></div>
                 </div>
             </div>
+
         }
     </>
 }

@@ -93,7 +93,14 @@ body
 
 
 @media(hover: hover) {
-  .top-button:hover, .top-button:active, .info:hover, .info:active, .bottom-button:hover, .bottom-button:active
+  .top-button:hover, 
+  .top-button:active, 
+  .info:hover, 
+  .info:active, 
+  .bottom-button:hover, 
+  .bottom-button:active,
+  .context-button:hover,
+  .context-button:active
   {
       transform: scale(1.05);
   }
@@ -136,15 +143,14 @@ body
 	position: absolute;
 	left: 50%;
 	bottom: 30px;
-	width: 45vw;
+	width: 50vw;
   min-width: 500px;
+  max-width: 720px;
   transform: translateX(-50%);
 	border-radius: 20px 20px 0 0;
 	display: flex;
 	align-items:center;
 	justify-content:space-between;
-  cursor: pointer;
-  pointer-events: auto;
 }
 
 
@@ -152,7 +158,6 @@ body
   height: min(10vw, 50px);
   margin-left: 5px;
   margin-right: 5px;
-  /* display: flex; */
   pointer-events: auto;
   cursor: pointer;
   object-fit: contain;
@@ -162,11 +167,11 @@ body
 
 @media screen and (max-width: 750px) {
   .bottom-menu{
-    width: 85vw;
+    width: 93vw;
   }
   .bottom-center-menu 
   {
-		width: 85vw;
+		width: 93vw;
     min-width: auto;
     bottom: 20px;
 	}
@@ -174,15 +179,18 @@ body
   {
     right: 0;
     margin-right: 0;
-    padding-bottom: 4px;
-    bottom: max(min(15.5vw, 70px), 50px);
+    padding-bottom: 3px;
+    bottom: max(min(15vw, 70px), 50px);
   }
   .bottom-button
   {
-    margin-left: 1vw;
-    margin-right: 1vw;
+    margin-left: 3px;
+    margin-right: 3px;
   }
 
+  .slider-range {
+    margin: 0 5px;
+  }
 }
 
 img
@@ -190,6 +198,58 @@ img
   max-height: 100%;
 }
 
+
+/*
+//Context Menu
+*/
+.contextMenu
+{
+  display: flex;
+  width: 190px;
+  height: 200px;
+  justify-content: space-between;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.context-group, .rotate-group, .size-group
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rotate-group
+{
+  justify-content: center;
+}
+
+.size-group
+{
+  justify-content: center;
+}
+
+.context-button
+{
+  height: min(9vw, 45px);
+  margin-left: 5px;
+  margin-right: 5px;
+  pointer-events: auto;
+  cursor: pointer;
+  object-fit: contain;
+  transition: transform 0.3s;
+  opacity: 0.9;
+}
+
+.rotate.context-button, .increment.context-button, .decrement.context-button
+{
+  margin: 6px 0px;
+  scale: 90%;
+}
+
+.open-menu.context-button
+{
+  transform: translateX(8%)
+}
 
 /*
 //Sticker Menu
@@ -308,6 +368,11 @@ img
   flex-shrink: 0;
 } */
 
+/*
+//Slider
+*/
+
+
 .slider-range {
 	width: 100%;
 	height: 13px;
@@ -315,41 +380,55 @@ img
 	-webkit-appearance: none;
   appearance: none;
   background: transparent;
+  outline: none;
   cursor: pointer;
+  pointer-events: auto;
+  transform: translateY(15%);
 }
 
 .slider-range::-webkit-slider-runnable-track {
-  background: rgb(255, 255, 255);
-  height: 2px;
+  background: rgb(240, 255, 244);
+  height: 10px;
+  border-radius: 10px;
 }
 
 .slider-range::-moz-range-track {
-  background: rgb(255, 255, 255);
-  height: 2px;
+  background: rgb(240, 255, 244);
+  height: 10px;
+  border-radius: 10px;
 }
 
 .slider-range::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	width: calc(40px * var(--thumb-scale, 1));
-	height: calc(40px * var(--thumb-scale, 1));
-  background-color: rgb(105, 187, 162);
-	border-radius: 50%;
+  border: 0;
+  box-shadow: none;
+	width: calc(min(12vw, 60px) * var(--thumb-scale, 1));
+	height: calc(min(12vw, 60px) * var(--thumb-scale, 1));
+  background-color: transparent;
+  background-image: url('/images/flower-thumb.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-top: 5px;
 	transform: translateY(-50%);
 }
 
 .slider-range::-moz-range-thumb {
 	border: none;
-	width: 15px;
-	height: 15px;
-	background-color: white;
-	border-radius: 50%;
-	margin-top: -5px;
-  transform: translateY(-50%);
+  box-shadow: none;
+	width: calc(min(12vw, 60px) * var(--thumb-scale, 1));
+	height: calc(min(12vw, 60px) * var(--thumb-scale, 1));
+  background-color: transparent;
+  background-image: url('/images/flower-thumb.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .slider-range:focus {
   outline: none;
 }
+
 
 
 .load-menu, .save-menu

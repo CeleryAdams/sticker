@@ -10,7 +10,7 @@ export default function Duck()
 {
     const duckRef = useRef()
     const helperRef = useRef()
-    const stickerScale = 0.15
+    const stickerScale = 0.2
 
     //load duck model and textures
     const { nodes } = useGLTF('/duck.glb')

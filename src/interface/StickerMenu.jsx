@@ -1,5 +1,8 @@
 import useSticker from '../stores/useSticker.jsx'
 import { useState, useEffect, useRef } from 'react'
+import CloseMenu from '/images/close-menu.png'
+import Previous from '/images/previous.png'
+import Next from '/images/next.png'
 
 export default function StickerMenu()
 {
@@ -114,7 +117,7 @@ export default function StickerMenu()
         {menuOpen &&
             <>
             <div className = 'menu-container' >
-                <div className='close-button'>x</div> 
+                <div className='close-button'><img src={CloseMenu} alt='close menu button' tabIndex='0'/></div> 
                 <div className='grid-menu' ref={menuRef}>
                     {currentStickers.map((sticker) => (
                         <div
@@ -126,8 +129,21 @@ export default function StickerMenu()
                         </div>
                     ))}
                 </div>
-                {showPrevButton && <div className='previous-button' ref={prevButtonRef} onClick={()=>setCurrentPage(currentPage-1)}>Previous</div>}
-                {showNextButton && <div className='next-button' ref={nextButtonRef}  onClick={()=>setCurrentPage(currentPage+1)}>Next</div>}
+                {showPrevButton && 
+                    <div 
+                        className='previous-button' 
+                        onClick={()=>setCurrentPage(currentPage-1)}
+                    >
+                        <img src={Previous} alt='previous page button' tabIndex='1' ref={prevButtonRef} />
+                    </div>
+                }
+                {showNextButton &&
+                    <div
+                        className='next-button' 
+                        onClick={()=>setCurrentPage(currentPage+1)}
+                    >
+                        <img src={Next} alt='next page button' tabIndex='2' ref={nextButtonRef} />
+                    </div>}
             </div>
             
             </>

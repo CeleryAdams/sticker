@@ -50,9 +50,11 @@ export default function Storage()
     const handleSaveInputChange = (event) =>
     {
         setNameError(null)
-        setSaveName(event.target.value)
-        if (!/^[a-zA-Z0-9]+$/i.test(saveName))
+        const inputValue = event.target.value
+        setSaveName(inputValue)
+        if (inputValue && !/^[a-zA-Z0-9]+$/i.test(inputValue))
         {
+            console.log(inputValue)
             setNameError('Please use only letters and numbers')
         }
     }
@@ -170,7 +172,7 @@ export default function Storage()
                 {!saveMessageOpen &&
                     
                     <form onSubmit={handleSaveSubmit}>
-                        <label>Name your duck</label>
+                        <label>name:</label>
                         <input 
                             onChange={handleSaveInputChange}
                             type='text'
@@ -178,14 +180,20 @@ export default function Storage()
                             id='saveName'
                             value={saveName}
                         />
-                        <button type='submit'>Submit</button>
+                        <button type='submit'>save</button>
                     </form>
                 }
                 {saveMessageOpen && 
-                    <div>{ `${saveMessage}` }</div>
+                    <div className='save-message'>{ `${saveMessage}` }</div>
                 }
                 {nameError &&
-                    <div>{ `${nameError}`}</div>
+                    <div className='error'>{ `${nameError}`}</div>
+                }
+
+                {errorMessageOpen &&
+                    <div className='error' ref={errorMessageRef}>
+                        {`Error: ${errorMessage}`}
+                    </div>
                 }
             </div>
         }
@@ -200,23 +208,22 @@ export default function Storage()
         {loadMenuOpen && 
             <div className='load-menu' ref={loadMenuRef}>
                 <form onSubmit={handleLoadSubmit}>
-                    <label>Enter Name</label>
+                    <label>name:</label>
                     <input 
                         onChange={handleLoadInputChange}
                         type='text'
                         name='loadName'
                         id='loadName'
                         value={loadName}
+                        spellCheck={false}
                     />
-                    <button type='submit'>Submit</button>
+                    <button type='submit'>load</button>
                 </form>
-            </div>
-        }
-
-
-        {errorMessageOpen &&
-            <div className='error' ref={errorMessageRef}>
-                {`Error: ${errorMessage}`}
+                {errorMessageOpen &&
+                    <div className='error' ref={errorMessageRef}>
+                        {`Error: ${errorMessage}`}
+                    </div>
+                }
             </div>
         }
     </>

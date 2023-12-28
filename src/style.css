@@ -76,39 +76,16 @@ body
 
 .top-button, .info
 {
-    /* font-family: 'Poppins', sans-serif;
-    font-size: 13pt;
-    font-weight: 600; */
     height: min(15.5vw, 68px);
     box-sizing: border-box;
     object-fit: scale-down;
     margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
-    /* display: flex; */
+
     pointer-events: auto;
     cursor: pointer;
     transition: transform 0.3s;
-}
-
-
-@media(hover: hover) {
-  .top-button:hover, 
-  .top-button:active, 
-  .info:hover, 
-  .info:active, 
-  .bottom-button:hover, 
-  .bottom-button:active,
-  .context-button:hover,
-  .context-button:active
-  {
-      transform: scale(1.05);
-  }
-  
-  .top-button:active, .info:active
-  {
-      transform: transform 0s;
-  }
 }
 
 
@@ -246,77 +223,35 @@ img
   scale: 90%;
 }
 
-.open-menu.context-button
-{
-  transform: translateX(8%)
-}
-
 /*
 //Sticker Menu
 */
 
-.menu-container{
+.menu-container, .grid-menu
+{
   position: absolute;
   left: 50%;
   top: 50%;
-  max-width: 400px;
-  max-height: 400px;
-  width: 80vw;
-  height: 80vw;
+  max-width: 450px;
+  max-height: 450px;
+  min-width: 200px;
+  min-height: 200px;
+  width: 72vw;
+  height: 72vw;
   transform: translateX(-50%) translateY(-50%);
 }
 
-.close-button, .next-button, .previous-button {
-  position: absolute;
-  transform: scaleY(72%) translateX(30px) translateY(-40px);
-  right: -20px;
-  top: -20px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 24px;
-  font-weight: 100;
-  width: 60px;
-	height: 60px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  color: rgb(255, 255, 255);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  pointer-events: auto;
-	/* background-color: rgba(240, 240, 240, 0.2);
-  flex-shrink: 0; */
-}
 
-
-.next-button
+.grid-menu 
 {
-  transform: translateX(30px) translateY(40px);
-}
-
-.previous-button
-{
-  transform: translateX(30px) translateY(150px);
-}
-
-
-.grid-menu {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  max-width: 400px;
-  max-height: 400px;
-  width: 80vw;
-  height: 80vw;
-  transform: translateX(-50%) translateY(-50%);
-  background-color:  rgba(255, 255, 255, 0.5);
+  background-color:  rgba(201, 178, 236, 0.7);
+  border-radius: 12px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(25% - 10px), 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(calc(25% - 10px), 1fr));
-  gap: 10px; 
-  padding: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(calc(25% - 12px), 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(calc(25% - 12px), 1fr));
+  gap: 12px; 
+  padding: 15px;
   cursor: pointer;
   pointer-events: auto;
   /* transform: translateY(-50%); */
@@ -326,7 +261,7 @@ img
 .grid-item {
   box-sizing: border-box;
   width: 100%;
-  padding: 10px;
+  margin:2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -339,18 +274,19 @@ img
 @media(hover: hover) {
   .grid-item:hover
   {
-    outline: 2px solid  rgb(236, 212, 255);
-    transform: scale(1.02);
+    outline: 4px dashed rgba(255, 49, 0, 0.63);
+    border-radius: 10px;
+    transform: scale(1.07);
   }
   
-  /* .grid-item:active
-  {
-      transform: transform 0s;
-  } */
 }
 
 .grid-item.selected {
-  outline: 2px solid  rgb(236, 212, 255);
+  outline: 4px dashed rgba(255, 49, 0, 0.63);
+  background-color: rgba(255, 207, 255, 0.8);
+  border-radius: 10px;
+  transform: scale(1.07);
+  z-index: 2;
 }
 
 
@@ -359,14 +295,69 @@ img
   max-height:100%;
 }
 
+.close-button, .next-button, .previous-button {
+  position: absolute;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
 
-/* .plus, .minus {
-  font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 400;
-  color: rgb(255, 255, 255);
-  flex-shrink: 0;
-} */
+.close-button
+{
+  right: -40px;
+  top: -40px;
+  width: 25px;
+	height: 25px;
+}
+
+.next-button, .previous-button
+{
+  top: 40%;
+  scale: 75%;
+}
+
+.next-button
+{
+  right: -18%;
+}
+
+.previous-button
+{
+  left: -18%;
+}
+
+@media screen and (max-width: 625px)
+{
+  .next-button, .previous-button
+  {
+    transform: scale(60%);
+    top: 35%;
+  }
+
+  .next-button
+  {
+    right: max(-70px, -23%);
+  }
+
+  .previous-button
+  {
+    left: max(-70px, -23%);
+  }
+  .grid-item.selected
+  {
+    outline: 4px dotted rgba(255, 49, 0, 0.63);
+  }
+
+  .grid-menu 
+  {
+    grid-template-columns: repeat(auto-fill, minmax(calc(25% - 6px), 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(calc(25% - 6px), 1fr));
+    gap: 6px; 
+    padding: 10px;
+  }
+
+}
+
 
 /*
 //Slider
@@ -430,39 +421,155 @@ img
 }
 
 
+/*
+//Load, save menus
+*/
+
 
 .load-menu, .save-menu
 {
   position: absolute;
-  top: 40vh;
-  left: -45vw;
-  width: 30vw;
-  height: 20vh;
-  /* transform: translateX(-50%) translateY(-50%); */
-  background-color: rgba(255, 255, 255);
+  top: 50vh;
+  left: 50vw;
+  transform: translateX(-50%) translateY(-50%);
+  width: 680px;
+  height: 305px;
+  background: transparent;
+  background-image: url('/images/bubble.svg');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
   font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 400;
-  color: rgb(133, 22, 139);
+  font-size: 16pt;
+  font-weight: 700;
+  color: rgb(148, 58, 152);
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: default;
   pointer-events: auto;
 }
 
 .error 
 {
   position: absolute;
-  top: 40vh;
-  left: -45vw;
-  background-color: rgb(244, 141, 255);
-  /* transform: translateX(-50%) translateY(-50%); */
-  pointer-events: auto;
-  width: 20vw;
-  height: 10vh;
+  top: 200px;
+  width: 400px;
+  font-size: 12pt;
+  color: black;
+  font-weight: 600;
+  text-align: center;
 }
 
-input, button
+input[type=text], button
 {
-  font-size: 16px
+  font-family: 'Poppins', sans-serif;
+  font-size: 16pt;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+}
+
+label, input[type=text], button
+{
+  margin: 0px 4px;
+}
+
+input[type=text]:focus
+{
+  outline-style: solid;
+  outline-color:  rgb(255, 205, 97);
+  outline-width: 2px;
+}
+
+input[type=text]
+{
+  color: rgb(0, 94, 89);
+  font-size: 15pt;
+  font-weight: 600;
+  background-color:rgb(255, 255, 238);
+  border-color: rgb(255, 241, 209);
+  border-style: solid;
+  width: 260px;
+}
+
+button
+{
+  cursor: pointer;
+  background-color: rgb(148, 58, 152);
+  color: rgb(255, 255, 238);
+  font-weight: 600;
+  transition: transform 0.3s;
+}
+
+@media(hover: hover) {
+  button:hover, button:active
+  {
+    background-color: rgb(26, 103, 148);
+  }
+
+}
+
+@media screen and (max-width: 780px)
+{
+  .load-menu, .save-menu
+  {
+    width: 90vw;
+    height: calc(90vw * 0.42);
+    min-width: 350px;
+    min-height: 150px;
+  }
+
+  input[type=text]
+  {
+    width: 30vw;
+    min-width: 120px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  button, label, input[type=text], .load-menu, .save-menu
+  {
+    font-size: 12pt;
+  }
+
+  label
+  {
+    color: #7A307E;
+  }
+
+  .error
+  {
+    top: max(95px, 23vw);
+    width: 20vw;
+    min-width: 300px;
+    font-size: 14px;
+  }
+
+}
+
+@media(hover: hover) {
+  .top-button:hover, 
+  .top-button:active, 
+  .info:hover, 
+  .info:active, 
+  .bottom-button:hover, 
+  .bottom-button:active,
+  .context-button:hover,
+  .context-button:active,
+  .close-button:hover,
+  .close-button:active,
+  .previous-button:hover,
+  .previous-button:active,
+  .next-button:hover,
+  .next-button:active
+  {
+      transform: scale(1.05);
+  }
+  
+  .top-button:active, .info:active
+  {
+      transform: transform 0s;
+  }
 }

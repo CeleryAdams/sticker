@@ -432,7 +432,7 @@ img
   top: 50vh;
   left: 50vw;
   transform: translateX(-50%) translateY(-50%);
-  width: 680px;
+  width: 710px;
   height: 305px;
   background: transparent;
   background-image: url('/images/bubble.svg');
@@ -446,6 +446,7 @@ img
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   cursor: default;
   pointer-events: auto;
 }
@@ -511,12 +512,13 @@ button
 
 }
 
+
 @media screen and (max-width: 780px)
 {
   .load-menu, .save-menu
   {
     width: 90vw;
-    height: calc(90vw * 0.42);
+    height: calc(90vw * 0.62);
     min-width: 350px;
     min-height: 150px;
   }
@@ -539,15 +541,42 @@ button
     color: #7A307E;
   }
 
-  .error
+}
+
+
+@media screen and (max-width: 600px)
+{
+
+  .load-menu, .save-menu
   {
-    top: max(95px, 23vw);
-    width: 20vw;
-    min-width: 300px;
-    font-size: 14px;
+    background-image: url('/images/tall-bubble.svg');
+  }
+  
+  form
+  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
+  label, input
+  {
+    margin: 6px;
+  }
+
+  button
+  {
+    margin-top: 10px;
+  }
+
+  .error 
+  {
+    position: static;
+    top: 180px;
+  }
 }
+
 
 @media(hover: hover) {
   .top-button:hover, 

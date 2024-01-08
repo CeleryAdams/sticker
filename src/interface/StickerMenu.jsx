@@ -19,7 +19,6 @@ export default function StickerMenu()
     const menuRef = useRef()
     const prevButtonRef = useRef()
     const nextButtonRef = useRef()
-    
 
 
     //id and filename need to match
@@ -110,6 +109,24 @@ export default function StickerMenu()
 
         return () => document.removeEventListener('click', handleOutsideClick)
     }, [menuRef])
+
+
+    //close with esc
+    useEffect(()=>
+    {
+        const handleKeyDown = (event) => 
+        {
+            if (event.key === 'Escape')
+            {
+                setMenuOpen(false)
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [])
+    
 
 
     return <div>

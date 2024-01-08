@@ -59,10 +59,14 @@ export default function Storage()
         }
     }
 
+
+    //Open save/load menus when top menu button is clicked, close other menus and reset error messages
     const handleLoadClick = (event) =>
     {
         setLoadMenuOpen(true)
         setSaveMenuOpen(false)
+        setErrorMessageOpen(false)
+        setErrorMessage('')
         event.stopPropagation()
     }
 
@@ -72,6 +76,8 @@ export default function Storage()
         setSaveMenuOpen(true)
         setSaveMessageOpen(false)
         setLoadMenuOpen(false)
+        setErrorMessageOpen(false)
+        setErrorMessage('')
         event.stopPropagation()
     }
 
@@ -124,8 +130,12 @@ export default function Storage()
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (loadMenuRef.current && !loadMenuRef.current.contains(event.target))
+            {
                 setLoadMenuOpen(false)
+                setErrorMessageOpen(false)
+                setErrorMessage('')
                 event.stopPropagation()
+            }
         }
 
         document.addEventListener('click', handleOutsideClick)
@@ -136,8 +146,12 @@ export default function Storage()
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (saveMenuRef.current && !saveMenuRef.current.contains(event.target))
+            {
                 setSaveMenuOpen(false)
+                setErrorMessageOpen(false)
+                setErrorMessage('')
                 event.stopPropagation()
+            }
         }
 
         document.addEventListener('click', handleOutsideClick)
@@ -145,18 +159,26 @@ export default function Storage()
         return () => document.removeEventListener('click', handleOutsideClick)
     }, [saveMenuRef])
 
-    useEffect(() => {
-        const handleOutsideClick = (event) => {
-            if (errorMessageRef.current && !errorMessageRef.current.contains(event.target))
+
+    //close everything with esc key
+    useEffect(()=>
+    {
+        const handleKeyDown = (event) => 
+        {
+            if (event.key === 'Escape')
+            {
+                setSaveMenuOpen(false)
+                setSaveMessageOpen(false)
+                setLoadMenuOpen(false)
                 setErrorMessageOpen(false)
                 setErrorMessage('')
-                event.stopPropagation()
+            }
         }
 
-        document.addEventListener('click', handleOutsideClick)
+        window.addEventListener('keydown', handleKeyDown)
 
-        return () => document.removeEventListener('click', handleOutsideClick)
-    }, [errorMessageRef])
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [])
 
 
 
@@ -172,7 +194,7 @@ export default function Storage()
                 {!saveMessageOpen &&
                     
                     <form onSubmit={handleSaveSubmit}>
-                        <label>name:</label>
+                        <label>name your duck:</label>
                         <input 
                             onChange={handleSaveInputChange}
                             type='text'
@@ -208,7 +230,7 @@ export default function Storage()
         {loadMenuOpen && 
             <div className='load-menu' ref={loadMenuRef}>
                 <form onSubmit={handleLoadSubmit}>
-                    <label>name:</label>
+                    <label>enter duck's name:</label>
                     <input 
                         onChange={handleLoadInputChange}
                         type='text'

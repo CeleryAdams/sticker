@@ -46,6 +46,22 @@ export default function ContextMenu()
         event.stopPropagation()
     }
 
+    //close context menu with esc
+    useEffect(()=>
+    {
+        const handleKeyDown = (event) => 
+        {
+            if (event.key === 'Escape')
+            {
+                setContextMenuOpen(false)
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [])
+
 
     return <>
         {contextMenuOpen &&

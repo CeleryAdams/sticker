@@ -3,6 +3,7 @@ import axios from 'axios'
 import useSticker from '../stores/useSticker'
 import LoadButton from '/images/load-button.png'
 import SaveButton from '/images/save-button.png'
+import Close from '/images/close-x.svg'
 
 
 const baseUrl = 'http://localhost:5000'
@@ -50,17 +51,6 @@ export default function Storage()
     }
 
 
-    useEffect(()=>
-    {
-        console.log("loading", isLoading)
-    }, [isLoading])
-
-    useEffect(()=>
-    {
-        console.log("saving", saveMessageOpen)
-    }, [saveMessageOpen])
-
-
     //set load name based on input
     const handleLoadInputChange = (event) => 
     {
@@ -75,7 +65,6 @@ export default function Storage()
         setSaveName(inputValue)
         if (inputValue && !/^[a-zA-Z0-9]+$/i.test(inputValue))
         {
-            console.log(inputValue)
             setNameError('Please use only letters and numbers')
         }
     }
@@ -236,6 +225,7 @@ export default function Storage()
         </div>
         {saveMenuOpen && 
             <div className='save-menu' ref={saveMenuRef}>
+                <img className='close-storage' src={Close} alt='close button' onClick={()=>setSaveMenuOpen(false)}/>
                 {!saveMessageOpen &&
                     
                     <form onSubmit={handleSaveSubmit}>
@@ -280,6 +270,7 @@ export default function Storage()
         </div>
         {loadMenuOpen && 
             <div className='load-menu' ref={loadMenuRef}>
+                <img className='close-storage' src={Close} alt='close button' onClick={()=>setLoadMenuOpen(false)}/>
                 <form onSubmit={handleLoadSubmit}>
                     <label>enter duck's name:</label>
                     <input 

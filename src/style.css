@@ -254,7 +254,6 @@ img
   padding: 15px;
   cursor: pointer;
   pointer-events: auto;
-  /* transform: translateY(-50%); */
 }
 
 
@@ -306,8 +305,9 @@ img
 {
   right: -40px;
   top: -40px;
-  width: 25px;
-	height: 25px;
+  width: 23px;
+	height: 23px;
+  opacity: 75%;
 }
 
 .next-button, .previous-button
@@ -330,7 +330,7 @@ img
 {
   .next-button, .previous-button
   {
-    transform: scale(60%);
+    transform: scale(70%);
     top: 35%;
   }
 
@@ -354,6 +354,133 @@ img
     grid-template-rows: repeat(auto-fill, minmax(calc(25% - 6px), 1fr));
     gap: 6px; 
     padding: 10px;
+  }
+
+  .close-button
+  {
+    right: -35px;
+    top: -35px;
+  }
+
+}
+
+/*
+//Info overlay
+*/
+.info-overlay
+{
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  left: 50%;
+  top: 50%;
+  max-width: 500px;
+  max-height: 450px;
+  background-color: #E1D1FC;
+  outline-offset: -1px;
+  outline: 15px solid white;
+  border-radius: 15px;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: auto;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2
+{
+  font-size: 20px;
+  font-weight: 800;
+  color: #00523a;
+  padding: 0px;
+  padding-bottom: 0.7em;
+  margin: 0px;
+  line-height: 0px;
+}
+
+ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14pt;
+    color: #006D4E;
+    font-weight: 400;
+}
+
+li
+{
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  padding-bottom: 0.3em;
+  white-space: nowrap;
+}
+
+.bold
+{
+  font-weight: 800;
+  padding-right: 5px;
+}
+
+.text-icon
+{
+  height: 26px;
+  padding-left: 0.3em;
+}
+
+.spacer-middle
+{
+  height: 2em;
+}
+
+.spacer-top
+{
+  height: 0.8em;
+}
+
+.close-x
+{
+  position: absolute;
+  top: -38px;
+  right: -38px;
+  width: 23px;
+  pointer-events: auto;
+  opacity: 0.8;
+}
+
+.close-storage
+{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  pointer-events: auto;
+}
+
+@media screen and (max-width: 600px)
+{
+  .info-overlay
+  {
+    padding: 12px;
+    outline-width: 10px;
+  }
+
+  ul
+  {
+    font-size: 11pt;
+    color: #004932;
+  }
+
+  .close-x
+  {
+    top: -25px;
+    right: -25px;
+    width: 20px;
+  }
+  .close-storage
+  {
+    width: 23px;
   }
 
 }
@@ -518,7 +645,7 @@ button
   .load-menu, .save-menu
   {
     width: 90vw;
-    height: calc(90vw * 0.62);
+    height: calc(90vw * 0.45);
     min-width: 350px;
     min-height: 150px;
   }
@@ -549,6 +676,7 @@ button
 
   .load-menu, .save-menu
   {
+    height: calc(90vw * 0.62);
     background-image: url('/images/tall-bubble.svg');
   }
   

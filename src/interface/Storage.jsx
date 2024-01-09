@@ -26,27 +26,48 @@ export default function Storage()
     const [ saveMessage, setSaveMessage ] = useState('')
 
     const [ nameError, setNameError ] = useState(null)
+
+    const [ isLoading, setIsLoading ] = useState(false)
     
 
+    //fetch settings from server
     const fetchDuck = async (loadName) =>
     {
+        setIsLoading(true)
         const data = await axios.get(`${baseUrl}/saved/${loadName}`)
         const { sticker_list } = data.data
         setLoadStickers(sticker_list)
+        setIsLoading(false)
     }
 
-    
+
+    //save settings to server
     const saveDuck = async (saveName, savedStickers) =>
     {   
+        setIsLoading(true)
         const data = await axios.post(`${baseUrl}/saved`, {name: saveName, sticker_list: savedStickers})
+        setIsLoading(false)
     }
 
 
+    useEffect(()=>
+    {
+        console.log("loading", isLoading)
+    }, [isLoading])
+
+    useEffect(()=>
+    {
+        console.log("saving", saveMessageOpen)
+    }, [saveMessageOpen])
+
+
+    //set load name based on input
     const handleLoadInputChange = (event) => 
     {
       setLoadName(event.target.value)
     }
 
+    //set save name based on input, show name error if invalid characters
     const handleSaveInputChange = (event) =>
     {
         setNameError(null)
@@ -63,6 +84,7 @@ export default function Storage()
     //Open save/load menus when top menu button is clicked, close other menus and reset error messages
     const handleLoadClick = (event) =>
     {
+        setIsLoading(false)
         setLoadMenuOpen(true)
         setSaveMenuOpen(false)
         setErrorMessageOpen(false)
@@ -72,7 +94,7 @@ export default function Storage()
 
     const handleSaveClick = (event) =>
     {
-        console.log(saveMenuOpen)
+        setIsLoading(false)
         setSaveMenuOpen(true)
         setSaveMessageOpen(false)
         setLoadMenuOpen(false)
@@ -82,6 +104,7 @@ export default function Storage()
     }
 
     
+    //call fetchDuck function when load button is clicked, display errors if any
     const handleLoadSubmit = async (event) =>
     {
         event.preventDefault()
@@ -90,6 +113,7 @@ export default function Storage()
             await fetchDuck(loadName)
             setLoadMenuOpen(false)
         } catch (err) {
+            setIsLoading(false)
             setErrorMessageOpen(true)
             console.error(err)
             if (err.response) setErrorMessage(err.response.data.message)
@@ -99,7 +123,7 @@ export default function Storage()
         
     }
 
-
+    //call saveDuck function when save button is clicked, display errors if any
     const handleSaveSubmit = async (event) =>
     {
         event.preventDefault()
@@ -111,7 +135,9 @@ export default function Storage()
             setSaveMessageOpen(true)
             setSaveName('')
         } catch (err) {
+            setIsLoading(false)
             setErrorMessageOpen(true)
+            setNameError(null)
             console.error(err)
             if (err.response) 
             {
@@ -122,11 +148,13 @@ export default function Storage()
     }
 
 
-    //close menu on outside click
+    //refs to detect outside clicks
     const loadMenuRef = useRef()
     const saveMenuRef = useRef()
     const errorMessageRef = useRef()
 
+
+    //close menu on outside click
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (loadMenuRef.current && !loadMenuRef.current.contains(event.target))
@@ -158,6 +186,23 @@ export default function Storage()
 
         return () => document.removeEventListener('click', handleOutsideClick)
     }, [saveMenuRef])
+
+
+    //remove error message on outside click
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (errorMessageRef.current && !errorMessageRef.current.contains(event.target))
+            {
+                setErrorMessageOpen(false)
+                setErrorMessage('')
+                event.stopPropagation()
+            }
+        }
+
+        document.addEventListener('click', handleOutsideClick)
+
+        return () => document.removeEventListener('click', handleOutsideClick)
+    }, [errorMessageRef])
 
 
     //close everything with esc key
@@ -217,6 +262,12 @@ export default function Storage()
                         {`Error: ${errorMessage}`}
                     </div>
                 }
+
+                {isLoading &&
+                    <div className='error'>
+                         {`saving ${saveName}...`}
+                    </div>
+                }
             </div>
         }
 
@@ -244,6 +295,11 @@ export default function Storage()
                 {errorMessageOpen &&
                     <div className='error' ref={errorMessageRef}>
                         {`Error: ${errorMessage}`}
+                    </div>
+                }
+                {isLoading &&
+                    <div className='error'>
+                         {`finding ${loadName}...`}
                     </div>
                 }
             </div>

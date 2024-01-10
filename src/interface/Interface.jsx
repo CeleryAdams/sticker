@@ -28,10 +28,9 @@ export default function Interface()
     const infoRef = useRef()
 
     //detect touch device
+
     const isTouchDevice = () => {
-        return (('ontouchstart' in window) ||
-           (navigator.maxTouchPoints > 0) ||
-           (navigator.msMaxTouchPoints > 0))
+        return (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0))
     }
 
     //open sticker menu
@@ -81,11 +80,7 @@ export default function Interface()
         return () => document.removeEventListener('click', handleOutsideClick)
     }, [infoRef])
 
-    useEffect(()=>
-    {
-        console.log("info open", infoOpen, "info ref", infoRef)
-    }, [infoOpen, infoRef])
-        
+    
 
     return <div className='interface'>
         <div className = 'top-menu'>
@@ -93,22 +88,22 @@ export default function Interface()
                 <Storage />
             </div>
             <div className='top-right-buttons'>
-                <div className='undo top-button' onClick={ undo }><img src={UndoButton} alt="undo button"/></div>
-                <div className='reset top-button' onClick={ clear }><img src={ClearButton} alt="clear button"/></div>
+                <div className='undo top-button animate-button' onClick={ undo }><img src={UndoButton} alt="undo button"/></div>
+                <div className='reset top-button animate-button' onClick={ clear }><img src={ClearButton} alt="clear button"/></div>
             </div>
         </div>
         <div className='bottom-menu'>
-            <div className='info' onClick={openInfoMenu}><img src={InfoButton} alt='info button'/></div>
+            <div className='info animate-button' onClick={openInfoMenu}><img src={InfoButton} alt='info button'/></div>
             <div className='bottom-center-menu'>
-                <div className='open-menu bottom-button' onClick={openMenu}><img src={StarButton} alt='sticker menu button'/></div>
+                <div className='open-menu bottom-button animate-button' onClick={openMenu}><img src={StarButton} alt='sticker menu button'/></div>
                 <Slider />
-                <div className='rotate bottom-button' onClick={rotate45Cc}><img src={LeftButton} alt='rotate left button'/></div>
-                <div className='rotate bottom-button' onClick={rotate45}><img src={RightButton} alt='rotate left button'/></div>
+                <div className='rotate bottom-button animate-button' onClick={rotate45Cc}><img src={LeftButton} alt='rotate left button'/></div>
+                <div className='rotate bottom-button animate-button' onClick={rotate45}><img src={RightButton} alt='rotate left button'/></div>
             </div>
         </div>
 
-        {infoOpen && <div className='info-overlay' ref={infoRef}>
-            <img className='close-x' src={Close} alt='close button' onClick={()=>setInfoOpen(false)}/>
+        {infoOpen && <div className='info-overlay animate-modal' ref={infoRef}>
+            <img className='close-info animate-button' src={Close} alt='close button' onClick={()=>setInfoOpen(false)}/>
             {!isTouchDevice() &&
                 <>
                     <div className='spacer-top'></div>

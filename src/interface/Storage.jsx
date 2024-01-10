@@ -218,14 +218,14 @@ export default function Storage()
 
     return <>
         <div 
-            className='save top-button' 
+            className='save top-button animate-button' 
             onClick={handleSaveClick}
         >
             <img src={SaveButton} alt='save button' tabIndex='0'/>
         </div>
         {saveMenuOpen && 
-            <div className='save-menu' ref={saveMenuRef}>
-                <img className='close-storage' src={Close} alt='close button' onClick={()=>setSaveMenuOpen(false)}/>
+            <div className='save-menu animate-modal' ref={saveMenuRef}>
+                <img className='close-storage animate-button' src={Close} alt='close button' onClick={()=>setSaveMenuOpen(false)}/>
                 {!saveMessageOpen &&
                     
                     <form onSubmit={handleSaveSubmit}>
@@ -263,14 +263,14 @@ export default function Storage()
 
 
         <div 
-            className='load top-button' 
+            className='load top-button animate-button' 
             onClick={handleLoadClick}
         >
             <img src={LoadButton} alt='load button'/>
         </div>
         {loadMenuOpen && 
-            <div className='load-menu' ref={loadMenuRef}>
-                <img className='close-storage' src={Close} alt='close button' onClick={()=>setLoadMenuOpen(false)}/>
+            <div className='load-menu animate-modal' ref={loadMenuRef}>
+                <img className='close-storage animate-button' src={Close} alt='close button' onClick={()=>setLoadMenuOpen(false)}/>
                 <form onSubmit={handleLoadSubmit}>
                     <label>enter duck's name:</label>
                     <input 

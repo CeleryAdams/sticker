@@ -75,12 +75,12 @@ export default function ContextMenu()
             >
                 
                 <div className='rotate-group'>
-                    <div className='rotate context-button' onClick={rotate45Cc}><img src={LeftContext} alt='rotate left context menu button'/></div>
-                    <div className='rotate context-button' onClick={rotate45}><img src={RightContext} alt='rotate right context menu button'/></div>
+                    <div className='rotate context-button animate-button' onClick={rotate45Cc}><img src={LeftContext} alt='rotate left context menu button'/></div>
+                    <div className='rotate context-button animate-button' onClick={rotate45}><img src={RightContext} alt='rotate right context menu button'/></div>
                 </div>
 
                 <div className='context-group'>
-                    <div className='open-menu context-button' onClick={(event)=>
+                    <div className='open-menu context-button animate-button' onClick={(event)=>
                         {
                             setMenuOpen(!menuOpen)
                             setContextMenuOpen(false)
@@ -88,7 +88,7 @@ export default function ContextMenu()
                         }
                         }><img src={StarContext} alt='open sticker menu context menu button'/>
                     </div>
-                    <div className='close context-button' 
+                    <div className='close context-button animate-button' 
                         onClick={(event)=>
                         {
                             setContextMenuOpen(false)
@@ -98,8 +98,8 @@ export default function ContextMenu()
                     </div>
                 </div>
                 <div className='size-group'>
-                    <div className='increment context-button' onClick={increment}><img src={PlusContext} alt='increase size context menu button'/></div>
-                    <div className='decrement context-button' onClick={decrement}><img src={MinusContext} alt='decrease size context menu button'/></div>
+                    <div className='increment context-button animate-button' onClick={increment}><img src={PlusContext} alt='increase size context menu button'/></div>
+                    <div className='decrement context-button animate-button' onClick={decrement}><img src={MinusContext} alt='decrease size context menu button'/></div>
                 </div>
             </div>
 

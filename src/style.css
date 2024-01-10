@@ -85,7 +85,6 @@ body
 
     pointer-events: auto;
     cursor: pointer;
-    transition: transform 0.3s;
 }
 
 
@@ -138,7 +137,6 @@ body
   pointer-events: auto;
   cursor: pointer;
   object-fit: contain;
-  transition: transform 0.3s;
 }
 
 
@@ -213,7 +211,6 @@ img
   pointer-events: auto;
   cursor: pointer;
   object-fit: contain;
-  transition: transform 0.3s;
   opacity: 0.9;
 }
 
@@ -391,9 +388,9 @@ h2
 {
   font-size: 20px;
   font-weight: 800;
-  color: #00523a;
+  color: #003d2b;
   padding: 0px;
-  padding-bottom: 0.7em;
+  padding-bottom: 0.8em;
   margin: 0px;
   line-height: 0px;
 }
@@ -440,13 +437,14 @@ li
   height: 0.8em;
 }
 
-.close-x
+.close-info
 {
   position: absolute;
   top: -38px;
   right: -38px;
   width: 23px;
   pointer-events: auto;
+  cursor: pointer;
   opacity: 0.8;
 }
 
@@ -456,14 +454,16 @@ li
   top: 0px;
   right: 0px;
   pointer-events: auto;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px)
 {
   .info-overlay
   {
-    padding: 12px;
+    padding: 15px;
     outline-width: 10px;
+    min-width: 285px;
   }
 
   ul
@@ -506,13 +506,13 @@ li
 
 .slider-range::-webkit-slider-runnable-track {
   background: rgb(240, 255, 244);
-  height: 10px;
+  height: 8px;
   border-radius: 10px;
 }
 
 .slider-range::-moz-range-track {
   background: rgb(240, 255, 244);
-  height: 10px;
+  height: 8px;
   border-radius: 10px;
 }
 
@@ -582,10 +582,9 @@ li
 {
   position: absolute;
   top: 200px;
-  width: 400px;
   font-size: 12pt;
-  color: black;
-  font-weight: 600;
+  color:rgb(0, 94, 89);
+  font-weight: 700;
   text-align: center;
 }
 
@@ -628,7 +627,6 @@ button
   background-color: rgb(148, 58, 152);
   color: rgb(255, 255, 238);
   font-weight: 600;
-  transition: transform 0.3s;
 }
 
 @media(hover: hover) {
@@ -705,28 +703,31 @@ button
   }
 }
 
+.animate-button
+{
+  transition: transform 0.3s;
+}
+
 
 @media(hover: hover) {
-  .top-button:hover, 
-  .top-button:active, 
-  .info:hover, 
-  .info:active, 
-  .bottom-button:hover, 
-  .bottom-button:active,
-  .context-button:hover,
-  .context-button:active,
-  .close-button:hover,
-  .close-button:active,
-  .previous-button:hover,
-  .previous-button:active,
-  .next-button:hover,
-  .next-button:active
+  .animate-button:hover, 
+  .animate-button:active
   {
       transform: scale(1.05);
   }
   
-  .top-button:active, .info:active
+  .animate-button:active
   {
       transform: transform 0s;
   }
+}
+
+.animate-modal
+{
+  animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1;}
 }

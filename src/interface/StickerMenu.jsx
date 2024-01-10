@@ -116,8 +116,8 @@ export default function StickerMenu()
         
         {menuOpen &&
             <>
-            <div className = 'menu-container' >
-                <div className='close-button'><img src={CloseMenu} alt='close menu button' tabIndex='0'/></div> 
+            <div className = 'menu-container animate-modal' >
+                <div className='close-button animate-button'><img src={CloseMenu} alt='close menu button' tabIndex='0'/></div> 
                 <div className='grid-menu' ref={menuRef}>
                     {currentStickers.map((sticker) => (
                         <div
@@ -131,7 +131,7 @@ export default function StickerMenu()
                 </div>
                 {showPrevButton && 
                     <div 
-                        className='previous-button' 
+                        className='previous-button animate-button' 
                         onClick={()=>setCurrentPage(currentPage-1)}
                     >
                         <img src={Previous} alt='previous page button' tabIndex='1' ref={prevButtonRef} />
@@ -139,7 +139,7 @@ export default function StickerMenu()
                 }
                 {showNextButton &&
                     <div
-                        className='next-button' 
+                        className='next-button animate-button' 
                         onClick={()=>setCurrentPage(currentPage+1)}
                     >
                         <img src={Next} alt='next page button' tabIndex='2' ref={nextButtonRef} />

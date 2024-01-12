@@ -10,12 +10,12 @@ export default function Duck()
 {
     const duckRef = useRef()
     const helperRef = useRef()
-    const stickerScale = 0.2
+    const stickerScale = 0.3
 
     //load duck model and textures
     const { nodes } = useGLTF('/duck.glb')
 
-    const duckTexture = useTexture('./baked-duck-4.jpg')
+    const duckTexture = useTexture('./baked-duck.jpg')
     duckTexture.flipY = false
     duckTexture.needsUpdate = true
 

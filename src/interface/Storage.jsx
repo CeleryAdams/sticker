@@ -6,7 +6,7 @@ import SaveButton from '/images/save-button.png'
 import Close from '/images/close-x.svg'
 
 
-const baseUrl = 'http://localhost:5000'
+const baseUrl = 'https://sticker-server.onrender.com'
 
 
 export default function Storage()

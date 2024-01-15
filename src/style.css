@@ -15,13 +15,13 @@ html
 
 body
 {
-  background: url("./images/grid.png"), repeat;
+  background: url("/images/grid.png"), repeat;
   background-size: max(12vw, 130px);
 }
 
 .speckle
 {
-  background: url("./images/speckle.png"), repeat;
+  background: url("/images/speckle.png"), repeat;
   background-size: max(2vw, 25px);
 }
 

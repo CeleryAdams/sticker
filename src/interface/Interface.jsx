@@ -11,8 +11,8 @@ import StarButton from '/images/star-button.png'
 import LeftButton from '/images/left-button.png'
 import RightButton from '/images/right-button.png'
 import FlowerThumb from '/images/flower-thumb.png'
-import LeftContext from '/images/left-context.png'
-import RightContext from '/images/right-context.png'
+import PlusContext from '/images/plus-context.png'
+import MinusContext from '/images/minus-context.png'
 import Close from '/images/close-x.svg'
 
 export default function Interface()
@@ -109,42 +109,47 @@ export default function Interface()
                     <div className='spacer-top'></div>
                     <h2>CAMERA</h2>
                     <ul>
-                        <li><span className='bold'>zoom: </span>middle wheel</li>
-                        <li><span className='bold'>rotate camera: </span>left click</li>
-                        <li><span className='bold'>pan camera: </span>shift + left click</li>
+                        <li><span className='bold'>Zoom: </span>Middle wheel</li>
+                        <li><span className='bold'>Rotate camera: </span>Left click</li>
+                        <li><span className='bold'>Pan camera: </span>Shift + left click</li>
                     </ul>
                     <div className='spacer-middle'></div>
                     <h2>STICKERS</h2>
                     <ul>
                         <li>
-                            <span className='bold'>open sticker menu: </span>
-                            left click
+                            <span className='bold'>Open sticker menu: </span>
+                            Left click
                             <img className='text-icon' src={StarButton} alt='sticker menu button image' />
                         </li>
                         <li>
-                            <span className='bold'>place sticker: </span>
-                            left click on duck
+                            <span className='bold'>Place sticker: </span>
+                            Left click on duck
                         </li>
                         <li>
-                            <span className='bold'>quick edit menu: </span>
-                            right click on duck
+                            <span className='bold'>Quick edit menu: </span>
+                            Right click on duck
                         </li>
                         <li>
-                            <span className='bold'>rotate sticker: </span>
-                            left click
+                            <span className='bold'>Rotate sticker: </span>
+                            Left click
                             <img className='text-icon' src={LeftButton} alt='rotate left button image' />
                             <img className='text-icon' src={RightButton} alt='rotate right button image' />
                         </li>
-                        <li><span className='bold'>change sticker size: </span>
-                            left click and drag
+                        <li><span className='bold'>Change sticker size: </span>
+                            Left click and drag
                             <img className='text-icon' src={FlowerThumb} alt='flower slider thumb image' />
                         </li>
-                        <li><span className='bold'>change sticker size (quick menu): </span>
-                            left click 
-                        <img className='text-icon' src={LeftContext} alt='rotate left context menu button image' />
-                        <img className='text-icon' src={RightContext} alt='rotate right context menu button image' />
-                        </li>
                     </ul>
+                    <div className='spacer-middle'></div>
+                    <h2>SAVING AND LOADING</h2>
+                    <div className='info-text'>
+                        <span className='bold'>Saving: </span>
+                        Name your duck to save. Names are case-senstive and can't be overwritten.
+                    </div>
+                    <div className='info-text'>
+                        <span className='bold'>Loading: </span>
+                        Enter a  saved name to load. Edits to loaded designs won't alter the saved file.
+                    </div>
                 </>
             }       
 
@@ -152,23 +157,31 @@ export default function Interface()
             <>
                 <ul>
                     <li>
-                        <span className='bold'>open sticker menu: </span>
+                        <span className='bold'>Open sticker menu: </span>
                         <img className='text-icon' src={StarButton} alt='sticker menu button image' />
                     </li>
                     <li>
-                        <span className='bold'>place sticker: </span>
-                        tap duck
+                        <span className='bold'>Place sticker: </span>
+                        Tap duck
                     </li>
                     <li>
-                        <span className='bold'>rotate sticker: </span>
+                        <span className='bold'>Rotate sticker: </span>
                         <img className='text-icon' src={LeftButton} alt='rotate left button image' />
                         <img className='text-icon' src={RightButton} alt='rotate right button image' />
                     </li>
-                    <li><span className='bold'>change sticker size: </span>
-                        hold and drag
+                    <li><span className='bold'>Sticker size: </span>
+                        Hold and drag
                         <img className='text-icon' src={FlowerThumb} alt='flower slider thumb image' />
                     </li>
                 </ul>
+                    <div className='info-text'>
+                        <span className='bold'>Saving: </span>
+                        Name your duck to save. Names are case-senstive and can't be overwritten.
+                    </div>
+                    <div className='info-text'>
+                        <span className='bold'>Loading: </span>
+                        Enter a  saved name to load. Edits to loaded designs won't alter the saved file.
+                    </div>
             </>
             }
         </div>}

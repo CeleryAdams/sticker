@@ -161,8 +161,12 @@ export default function Interface()
                         <img className='text-icon' src={StarButton} alt='sticker menu button image' />
                     </li>
                     <li>
-                        <span className='bold'>Place sticker: </span>
+                        <span className='bold'>Position sticker: </span>
                         Tap duck
+                    </li>
+                    <li>
+                        <span className='bold'>Place sticker: </span>
+                        Tap duck (again)
                     </li>
                     <li>
                         <span className='bold'>Rotate sticker: </span>

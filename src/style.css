@@ -279,7 +279,7 @@ img
 
 .grid-item.selected {
   outline: 4px dashed rgba(255, 49, 0, 0.63);
-  background-color: rgba(255, 207, 255, 0.8);
+  background-color: rgba(255, 188, 240, 0.8);
   border-radius: 10px;
   transform: scale(1.07);
   z-index: 2;
@@ -370,7 +370,7 @@ img
   font-family: 'Poppins', sans-serif;
   left: 50%;
   top: 50%;
-  max-width: 500px;
+  max-width: 30em;
   max-height: 80vh;
   background-color: #dfcdff;
   outline-offset: -1px;
@@ -386,7 +386,7 @@ img
 
 h2
 {
-  font-size: 20px;
+  font-size: 16pt;
   font-weight: 800;
   color: #003d2b;
   padding: 0px;
@@ -400,7 +400,7 @@ ul, .info-text
     list-style-type: none;
     margin: 0;
     padding: 0;
-    font-size: max(13pt, 2vh);
+    font-size: min(max(13pt, 2vh), 15pt);
     color: #00684a;
     font-weight: 500;
 }

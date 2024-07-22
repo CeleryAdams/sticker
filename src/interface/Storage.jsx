@@ -228,17 +228,18 @@ export default function Storage()
                 <img className='close-storage animate-button' src={Close} alt='close button' onClick={()=>setSaveMenuOpen(false)}/>
                 {!saveMessageOpen &&
                     
-                    <form onSubmit={handleSaveSubmit}>
-                        <label>name your duck:</label>
-                        <input 
-                            onChange={handleSaveInputChange}
-                            type='text'
-                            name='saveName'
-                            id='saveName'
-                            value={saveName}
-                        />
-                        <button type='submit'>save</button>
-                    </form>
+                    // <form onSubmit={handleSaveSubmit}>
+                    //     <label>name your duck:</label>
+                    //     <input 
+                    //         onChange={handleSaveInputChange}
+                    //         type='text'
+                    //         name='saveName'
+                    //         id='saveName'
+                    //         value={saveName}
+                    //     />
+                    //     <button type='submit'>save</button>
+                    // </form>
+                    <div className='save-message'>try again later</div>
                 }
                 {saveMessageOpen && 
                     <div className='save-message'>{ `${saveMessage}` }</div>
@@ -271,7 +272,7 @@ export default function Storage()
         {loadMenuOpen && 
             <div className='load-menu animate-modal' ref={loadMenuRef}>
                 <img className='close-storage animate-button' src={Close} alt='close button' onClick={()=>setLoadMenuOpen(false)}/>
-                <form onSubmit={handleLoadSubmit}>
+                {/* <form onSubmit={handleLoadSubmit}>
                     <label>enter duck's name:</label>
                     <input 
                         onChange={handleLoadInputChange}
@@ -282,7 +283,8 @@ export default function Storage()
                         spellCheck={false}
                     />
                     <button type='submit'>load</button>
-                </form>
+                </form> */}
+                <div className='save-message'>try again later</div>
                 {errorMessageOpen &&
                     <div className='error' ref={errorMessageRef}>
                         {`Error: ${errorMessage}`}

@@ -8,6 +8,7 @@ import useSticker from './stores/useSticker'
 
 export default function Duck()
 {
+
     const duckRef = useRef()
     const helperRef = useRef()
     const stickerScale = 0.3
@@ -82,7 +83,6 @@ export default function Duck()
     useEffect(()=>{
         if (loadStickers)
         {
-            console.log('stickers loaded')
             const loadedStickers = loadStickers.map((sticker) => ({...sticker, texture: parseStickerTexture(sticker.selectedSticker, sticker.stickerRotation)}))
             setStickers(loadedStickers)
             setLoadStickers(null)
@@ -96,7 +96,6 @@ export default function Duck()
     useEffect(() =>
     {
         const stickersCopy = stickers.map((sticker) => ({...sticker, texture: null}))
-        // console.log(JSON.stringify(stickersCopy))
         localStorage.setItem('savedStickers', JSON.stringify(stickersCopy))
         setSavedStickers(stickersCopy)
     }, [stickers])
@@ -233,7 +232,6 @@ export default function Duck()
             onPointerLeave={()=> document.body.style.cursor = 'default'}
             onContextMenu={(event) => 
                 {
-                    console.log('context menu triggered')
                     event.stopPropagation()
                     setContextMenuPosition({x: event.clientX, y: event.clientY})
                     setContextMenuOpen(!contextMenuOpen)

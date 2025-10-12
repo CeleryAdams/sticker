@@ -6,4 +6,4 @@ Play it [here](https://sticker-duck.vercel.app/)
 
 Save/load feature implemented using Python/Flask and a PostgreSQL database (not currently supported)
 
-backend code [here](https://github.com/CeleryAdams/sticker-backend)
+Backend code [here](https://github.com/CeleryAdams/sticker-backend)
